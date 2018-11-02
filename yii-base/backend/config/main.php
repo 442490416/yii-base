@@ -30,6 +30,7 @@ return [
             'targets' => [
                 [
                     'class' => 'yii\log\FileTarget',
+                    'logFile' => '@logPath/backend.log',
                     'levels' => ['error', 'warning'],
                 ],
             ],
