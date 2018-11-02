@@ -29,6 +29,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        //Yii::$app->session->setFlash('success', 'This is the message');
         return $this->render('index');
     }
 
