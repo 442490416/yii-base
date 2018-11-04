@@ -2,11 +2,12 @@
 return [
     'components' => [
         'db' => [
-            'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=yii2advanced',
-            'username' => 'root',
-            'password' => '',
-            'charset' => 'utf8',
+            'class'         => 'yii\db\Connection',
+            'dsn'           => 'mysql:host=127.0.0.1;dbname=yii-base',
+            'username'      => 'yii-base',
+            'password'      => '123456',
+            'charset'       => 'utf8mb4',
+            'tablePrefix'   => 'base_'
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
