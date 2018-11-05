@@ -35,7 +35,7 @@ CREATE TABLE `base_admin_operate_log` (
   `admin_id` int(10) unsigned DEFAULT NULL COMMENT '管理员ID',
   `admin_name` varchar(32) DEFAULT '' COMMENT '管理员昵称',
   `title` varchar(64) DEFAULT '' COMMENT '操作标题',
-  `router` varchar(255) DEFAULT '' COMMENT '操作路由',
+  `router` varchar(128) DEFAULT '' COMMENT '操作路由',
   `operate_desc` varchar(255) DEFAULT '' COMMENT '操作描述',
   `operate_id` int(10) unsigned DEFAULT NULL COMMENT '操作id',
   `operate_ip` bigint(20) unsigned DEFAULT NULL COMMENT '操作ip',
