@@ -56,7 +56,13 @@ class SiteController extends Controller
         $war = '';
         $model = new AdminUser();
         if(\Yii::$app->request->isPost){
+            $userName = ComHelper::fStr('userName',$_POST);
+            $password = ComHelper::fStr('password',$_POST);
             $verify   = ComHelper::fStr('captcha',$_POST);
+
+            $model->user_name = $userName;
+            $model->password  = $password;
+
             if(empty($verify)) {
                 return $this->renderPartial('login', [
                     'war' => '验证码必填',
@@ -75,8 +81,7 @@ class SiteController extends Controller
                 ]);
             }
 
-            $userName = ComHelper::fStr('userName',$_POST);
-            $password = ComHelper::fStr('password',$_POST);
+
 
         }
 
