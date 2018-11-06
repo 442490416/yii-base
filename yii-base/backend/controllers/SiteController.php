@@ -65,6 +65,7 @@ class SiteController extends Controller
 
             if(empty($verify)) {
                 return $this->renderPartial('login', [
+                    'model' => $model,
                     'war' => '验证码必填',
                 ]);
             }
@@ -77,6 +78,7 @@ class SiteController extends Controller
 
             if(!$result) {
                 return $this->renderPartial('login', [
+                    'model' => $model,
                     'war' => '验证码错误',
                 ]);
             }
