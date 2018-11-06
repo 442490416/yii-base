@@ -66,7 +66,7 @@ class SiteController extends Controller
             /**
              * @var CaptchaAction $captchaAction
              */
-            $captchaAction = $this->createAction('yii\captcha\CaptchaAction');
+            $captchaAction = $this->createAction('captcha');
             $result = $captchaAction->validate($verify,false);
 
             if(!$result) {
