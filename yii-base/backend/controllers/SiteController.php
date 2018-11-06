@@ -56,7 +56,7 @@ class SiteController extends Controller
         $war = '';
         $model = new AdminUser();
         if(\Yii::$app->request->isPost){
-            $userName = ComHelper::fStr('userName',$_POST);
+            $userName = ComHelper::fStr('user_name',$_POST);
             $password = ComHelper::fStr('password',$_POST);
             $verify   = ComHelper::fStr('captcha',$_POST);
 
