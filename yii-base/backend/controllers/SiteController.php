@@ -54,18 +54,16 @@ class SiteController extends Controller
     public function actionLogin()
     {
         $war = '';
-        $model = new AdminUser();
         if(\Yii::$app->request->isPost){
             $userName = ComHelper::fStr('user_name',$_POST);
             $password = ComHelper::fStr('password',$_POST);
             $verify   = ComHelper::fStr('captcha',$_POST);
 
-            $model->user_name = $userName;
-            $model->password  = $password;
+            \Yii::$app->user->user_name = $userName;
+            \Yii::$app->user->password  = $password;
 
             if(empty($verify)) {
                 return $this->renderPartial('login', [
-                    'model' => $model,
                     'war' => '验证码必填',
                 ]);
             }
@@ -78,7 +76,6 @@ class SiteController extends Controller
 
             if(!$result) {
                 return $this->renderPartial('login', [
-                    'model' => $model,
                     'war' => '验证码错误',
                 ]);
             }
@@ -88,7 +85,6 @@ class SiteController extends Controller
         }
 
         return $this->renderPartial('login', [
-            'model' => $model,
             'war'   => $war,
         ]);
     }
