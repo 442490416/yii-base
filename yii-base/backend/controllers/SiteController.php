@@ -42,8 +42,10 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        if(\Yii::$app->login->isLogin()) {
+            exit('登录成功');
+        }
         return $this->redirect(['/site/login']);
-        return $this->render('index');
     }
 
     /**
@@ -59,8 +61,8 @@ class SiteController extends Controller
             $password = ComHelper::fStr('password',$_POST);
             $verify   = ComHelper::fStr('captcha',$_POST);
 
-            \Yii::$app->user->user_name = $userName;
-            \Yii::$app->user->password  = $password;
+            \Yii::$app->login->user_name = $userName;
+            \Yii::$app->login->password  = $password;
 
             if(empty($verify)) {
                 return $this->renderPartial('login', [
@@ -80,8 +82,15 @@ class SiteController extends Controller
                 ]);
             }
 
+            /**
+             * 登录
+             */
+            $result = \Yii::$app->login->login();
+            if($result) {
+                return $this->render('index');
+            }
 
-
+            $war = '用户名或者密码错误';
         }
 
         return $this->renderPartial('login', [
@@ -96,7 +105,7 @@ class SiteController extends Controller
      */
     public function actionLogout()
     {
-        Yii::$app->user->logout();
+        Yii::$app->login->logout();
 
         return $this->goHome();
     }

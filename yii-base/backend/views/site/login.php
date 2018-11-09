@@ -42,11 +42,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="x_content">
                 <br>
                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                    <input type="text" class="form-control has-feedback-left" id="user_name" name="user_name" placeholder="登录名" value="<?=Html::encode(\Yii::$app->user->user_name)?>">
+                    <input type="text" class="form-control has-feedback-left" id="user_name" name="user_name" placeholder="登录名" value="<?=Html::encode(\Yii::$app->login->user_name)?>">
                     <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                    <input type="password" class="form-control has-feedback-left" id="password" name="password" value="<?=Html::encode(\Yii::$app->user->password)?>" placeholder="密码">
+                    <input type="password" class="form-control has-feedback-left" id="password" name="password" value="<?=Html::encode(\Yii::$app->login->password)?>" placeholder="密码">
                     <span class="fa fa-key form-control-feedback left" aria-hidden="true"></span>
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">

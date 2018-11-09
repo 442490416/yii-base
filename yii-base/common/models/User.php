@@ -63,7 +63,6 @@ class User extends \common\base\ActiveRecord
             'password' => Yii::t('app', '密码'),
             'addition' => Yii::t('app', '密码项'),
             'mobile' => Yii::t('app', '手机号'),
-            'sex' => Yii::t('app', '性别（1男，2女）'),
             'add_type' => Yii::t('app', '注册类型(0网站，1微信，2QQ，3新浪微博)'),
             'wx_open_id' => Yii::t('app', '微信open_id'),
             'qq_open_id' => Yii::t('app', 'QQ open_id'),

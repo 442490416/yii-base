@@ -20,13 +20,6 @@ use Yii;
 class AdminUser extends \common\base\ActiveRecord
 {
     /**
-     * @var bool
-     * @author Jiang Haiqiang
-     * @email  jhq0113@163.com
-     */
-    public $isGuest = true;
-
-    /**
      * {@inheritdoc}
      */
     public static function tableName()
@@ -63,17 +56,5 @@ class AdminUser extends \common\base\ActiveRecord
             'add_time' => Yii::t('app', '注册时间'),
             'update_time' => Yii::t('app', '修改时间'),
         ];
-    }
-
-    /**
-     * @return bool
-     * Author: Jiang Haiqiang
-     * Email : jhq0113@163.com
-     * Date: 2018/11/5
-     * Time: 15:04
-     */
-    public function login()
-    {
-        return true;
     }
 }

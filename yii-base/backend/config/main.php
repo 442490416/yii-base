@@ -18,8 +18,21 @@ return [
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
-        'user'=>[
-          'class' => 'backend\models\AdminUser',
+        /**
+         * 登录
+         */
+        'login'=>[
+            'class'           => 'backend\service\Login',
+            'loginSessionKey' => 'keySessionLogin',
+            'tokenKey'        => 'KeyTokens',
+            'salt'            => 'back123dne#34SDsdfasfd'
+        ],
+        /**
+         * 操作日志
+         */
+        'operator' =>[
+            'class'     => 'backend\service\OperateLog',
+            'template'  => require __DIR__.'/operate-template.php',
         ],
         'session' => [
             // this is the name of the session cookie used for login on the backend
