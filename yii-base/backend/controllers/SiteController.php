@@ -2,6 +2,7 @@
 namespace backend\controllers;
 
 use backend\models\AdminUser;
+use backend\service\Login;
 use common\helpers\ComHelper;
 use Yii;
 use yii\captcha\CaptchaAction;
@@ -57,12 +58,16 @@ class SiteController extends Controller
     {
         $war = '';
         if(\Yii::$app->request->isPost){
+            /**
+             * @var Login $login
+             */
+            $login = \Yii::$app->login;
             $userName = ComHelper::fStr('user_name',$_POST);
             $password = ComHelper::fStr('password',$_POST);
             $verify   = ComHelper::fStr('captcha',$_POST);
 
-            \Yii::$app->login->user_name = $userName;
-            \Yii::$app->login->password  = $password;
+            $login->user_name = $userName;
+            $login->password  = $password;
 
             if(empty($verify)) {
                 return $this->renderPartial('login', [
@@ -82,10 +87,12 @@ class SiteController extends Controller
                 ]);
             }
 
+            $login->regis($password,$login->password);
+
             /**
              * 登录
              */
-            $result = \Yii::$app->login->login();
+            $result = $login->login();
             if($result) {
                 return $this->render('index');
             }

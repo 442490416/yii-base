@@ -10,6 +10,7 @@ namespace backend\service;
 
 
 use backend\models\AdminUser;
+use common\helpers\ComHelper;
 use common\helpers\SessionHelper;
 
 /**
@@ -74,6 +75,23 @@ class Login extends \common\service\Login
     }
 
     /**
+     * @param string $userName
+     * @param string $password
+     * @return bool
+     * @author Jiang Haiqiang
+     * @email  jhq0113@163.com
+     */
+    public function regis($userName,$password)
+    {
+        $model = new AdminUser();
+        $model->user_name     = $userName;
+        $model->password      = $this->_encryptPassword($password);
+        $model->update_time   = time();
+        $model->last_login_ip = ComHelper::getClientIp();
+        return $model->save();
+    }
+
+    /**
      * @return bool
      * Author: Jiang Haiqiang
      * Email : jhq0113@163.com
@@ -90,7 +108,7 @@ class Login extends \common\service\Login
             return false;
         }
 
-        $this->password = $this->_encryptPassword();
+        $this->password = $this->_encryptPassword($this->password);
 
         $this->userInfo = AdminUser::find()
             ->where([
@@ -106,6 +124,14 @@ class Login extends \common\service\Login
             return false;
         }
 
+        //更新数据库
+        $this->userInfo->last_login_ip = ComHelper::getClientIp();
+        $this->userInfo->update_time   = time();
+        $this->userInfo->save();
+
+        /**
+         * 删除敏感信息
+         */
         unset($this->password,$this->userInfo->password);
 
         //持久化token

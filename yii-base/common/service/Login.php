@@ -44,9 +44,9 @@ abstract class Login extends Service
      * @author Jiang Haiqiang
      * @email  jhq0113@163.com
      */
-    protected function _encryptPassword()
+    protected function _encryptPassword($password)
     {
-        $encrypt = \Yii::$app->mcrypt->encrypt($this->password);
+        $encrypt = \Yii::$app->mcrypt->encrypt($password);
         return md5($encrypt.md5($encrypt.$this->salt));
     }
 
