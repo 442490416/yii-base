@@ -108,12 +108,12 @@ class Login extends \common\service\Login
             return false;
         }
 
-        $this->password = $this->_encryptPassword($this->password);
+        $password = $this->_encryptPassword($this->password);
 
         $this->userInfo = AdminUser::find()
             ->where([
                 'user_name' => $this->userName,
-                'password'  => $this->password
+                'password'  => $password
             ])
             ->one();
 
