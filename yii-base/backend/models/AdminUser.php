@@ -20,6 +20,13 @@ use Yii;
 class AdminUser extends \common\base\ActiveRecord
 {
     /**
+     * @var bool
+     * @author Jiang Haiqiang
+     * @email  jhq0113@163.com
+     */
+    public $isGuest = true;
+
+    /**
      * {@inheritdoc}
      */
     public static function tableName()
