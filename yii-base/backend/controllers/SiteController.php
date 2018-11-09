@@ -66,7 +66,7 @@ class SiteController extends Controller
             $password = ComHelper::fStr('password',$_POST);
             $verify   = ComHelper::fStr('captcha',$_POST);
 
-            $login->user_name = $userName;
+            $login->userName = $userName;
             $login->password  = $password;
 
             if(empty($verify)) {
@@ -87,7 +87,7 @@ class SiteController extends Controller
                 ]);
             }
 
-            $login->regis($password,$login->password);
+            $login->regis($login->userName,$login->password);
 
             /**
              * 登录
