@@ -44,7 +44,7 @@ class AdminRole extends \common\base\ActiveRecord
         return [
             'id' => Yii::t('app', '角色表'),
             'role_name' => Yii::t('app', '角色名称'),
-            'is_on' => Yii::t('app', '是否启用(0未启用，1启用)'),
+            'is_on' => Yii::t('app', '是否启用'),
             'add_time' => Yii::t('app', '添加时间'),
             'update_time' => Yii::t('app', '更新时间'),
         ];
