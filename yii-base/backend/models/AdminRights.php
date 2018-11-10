@@ -19,15 +19,35 @@ use Yii;
 class AdminRights extends \common\base\ActiveRecord
 {
     /**
+     * application
+     */
+    const APP = '0';
+
+    /**
+     * module
+     */
+    const MODULE = '1';
+
+    /**
+     * controller
+     */
+    const CONTROLLER = '2';
+
+    /**
+     * action
+     */
+    const ACTION ='3';
+
+    /**
      * @var array
      * @author Jiang Haiqiang
      * @email  jhq0113@163.com
      */
     public static $LEVEL_MAP = [
-        '0' => 'application',
-        '1' => 'module',
-        '2' => 'controller',
-        '3' => 'action',
+        self::APP        => 'application',
+        self::MODULE     => 'module',
+        self::CONTROLLER => 'controller',
+        self::ACTION     => 'action',
     ];
 
     /**

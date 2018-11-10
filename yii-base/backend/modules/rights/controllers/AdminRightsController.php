@@ -43,6 +43,34 @@ class AdminRightsController extends Controller
     }
 
     /**
+     * @var array 默认action列表
+     * @author Jiang Haiqiang
+     * @email  jhq0113@163.com
+     */
+    protected static $_defaultActionList = [
+        [
+            'name' => 'index',
+            'desc' => '列表'
+        ],
+        [
+            'name' => 'create',
+            'desc' => '添加'
+        ],
+        [
+            'name' => 'view',
+            'desc' => '详情'
+        ],
+        [
+            'name' => 'delete',
+            'desc' => '删除'
+        ],
+        [
+            'name' => 'remove',
+            'desc' => '是否启用'
+        ]
+    ];
+
+    /**
      * Creates a new AdminRights model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -51,8 +79,23 @@ class AdminRightsController extends Controller
     {
         $model = new AdminRights();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->save()) {
+                if($model->level == AdminRights::CONTROLLER) {
+                    foreach (self::$_defaultActionList as $action) {
+                        $actionModel = new AdminRights();
+                        $actionModel->level = AdminRights::ACTION;
+                        $actionModel->is_on = '1';
+                        $actionModel->name  = $action['name'];
+                        $actionModel->range = '0';
+                        $actionModel->description = $action['desc'];
+                        $actionModel->parent_id = $model->id;
+                        $actionModel->save();
+                    }
+                }
+
+                return $this->redirect(['index']);
+            }
         }
 
         return $this->render('create', [

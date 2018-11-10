@@ -7,7 +7,6 @@ use yii\helpers\Html;
 
 $this->title = '修改权限节点: ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => '权限节点管理', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = '修改';
 ?>
 <div class="admin-rights-update">
