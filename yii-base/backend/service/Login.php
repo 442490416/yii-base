@@ -150,6 +150,7 @@ class Login extends \common\service\Login
     public function logout()
     {
         SessionHelper::destroy();
+        SessionHelper::deleteAll();
         unset($this->userInfo);
     }
 
