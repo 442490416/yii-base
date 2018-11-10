@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\AdminRole */
 
-$this->title = 'Update Admin Role: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Admin Roles', 'url' => ['index']];
+$this->title = '修改角色: ' . $model->role_name;
+$this->params['breadcrumbs'][] = ['label' => '角色管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>

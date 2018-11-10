@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel backend\models\search\AdminRole */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Admin Roles';
+$this->title = '角色管理';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="admin-role-index">
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Admin Role', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('添加角色', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -28,11 +28,21 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'role_name',
-            'is_on',
+            [
+                'attribute' => 'is_on',
+                'value'     => function($model) {
+                    return ($model->is_on == 1) ? '已启用' : '已禁用';
+                },
+                'filter' => [
+                    '0' => '已禁用',
+                    '1' => '已启用'
+                ]
+            ],
             'add_time',
             'update_time:datetime',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => \common\base\ActionColumn::class
+            ],
         ],
     ]); ?>
     <?php Pjax::end(); ?>

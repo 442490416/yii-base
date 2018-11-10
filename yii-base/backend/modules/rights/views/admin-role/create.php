@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\AdminRole */
 
-$this->title = 'Create Admin Role';
-$this->params['breadcrumbs'][] = ['label' => 'Admin Roles', 'url' => ['index']];
+$this->title = '添加角色';
+$this->params['breadcrumbs'][] = ['label' => '角色管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="admin-role-create">
