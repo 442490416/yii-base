@@ -58,10 +58,12 @@ use backend\models\AdminRights;
 </div>
 <script type="text/javascript">
     Page = {
-        list:<?=json_encode($list,JSON_UNESCAPED_UNICODE)?>
+        list:<?=json_encode($list,JSON_UNESCAPED_UNICODE)?>,
+        model:<?=json_encode($model,JSON_UNESCAPED_UNICODE)?>
     };
 
     Page.init = function() {
+
         $('#adminrights-level').on('change',function(){
             var level = parseInt($(this).val());
             $('#adminrights-parent_id').empty();
