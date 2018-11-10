@@ -52,6 +52,8 @@ class Login extends \common\service\Login
 
         $secretToken = \Yii::$app->mcrypt->encrypt($token);
         SessionHelper::set($this->tokenKey,$secretToken);
+
+        var_dump(SessionHelper::get('token'),SessionHelper::get($this->tokenKey));die;
     }
 
     /**
