@@ -42,40 +42,30 @@ class Login extends \common\service\Login
     public $userInfo;
 
     /**
+     * @param $userId
      * @author Jiang Haiqiang
      * @email  jhq0113@163.com
      */
-    protected function _createToken()
+    protected function _createToken($userId)
     {
-        $token = uniqid('ddasdfasdfas32sdfa');
-        SessionHelper::set('token',$token);
-
-        $secretToken = \Yii::$app->mcrypt->encrypt($token);
-        SessionHelper::set($this->tokenKey,$secretToken);
-
-        var_dump(SessionHelper::get('token'),SessionHelper::get($this->tokenKey));die;
+        SessionHelper::set($this->tokenKey,uniqid($userId.'|'));
     }
 
     /**
-     * @return bool
+     * @return int
      * @author Jiang Haiqiang
      * @email  jhq0113@163.com
      */
     protected function _validateToken()
     {
-        $token = SessionHelper::get('token');
-        if(empty($token)) {
-            exit('未获取到');
-            return false;
-        }
-
-        $secretToken = SessionHelper::get($this->tokenKey);
+        $token = SessionHelper::get($this->tokenKey);
         if(empty($secretToken)) {
-            exit('未获取到密文');
             return false;
         }
 
-        return $token === \Yii::$app->mcrypt->decrypt($secretToken);
+        $token = explode('|',$token);
+
+        return (int)$token[0];
     }
 
     /**
@@ -136,7 +126,7 @@ class Login extends \common\service\Login
         unset($this->password,$this->userInfo->password);
 
         //持久化token
-        $this->_createToken();
+        $this->_createToken($this->userInfo->id);
         //登录信息持久化
         SessionHelper::set($this->loginSessionKey,serialize($this->userInfo));
 
@@ -169,8 +159,7 @@ class Login extends \common\service\Login
         }
 
         $result = $this->_validateToken();
-        if(!$result) {
-            exit('token验证失败');
+        if($result < 1) {
             return false;
         }
 
