@@ -18,9 +18,14 @@ use backend\controllers\Controller;
  */
 class IndexController extends Controller
 {
+    /**
+     * @return string
+     * @author Jiang Haiqiang
+     * @email  jhq0113@163.com
+     */
     public function actionIndex()
     {
-        return $this->render('@backend/views/site/index',[
+        return $this->renderFile('@backend/views/site/index',[
             'title' => $this->module->name
         ]);
     }
