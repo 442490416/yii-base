@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     '1' => '否'
                 ]
             ],
-            'range',
+            //'range',
             [
                 'class'    => \common\base\ActionColumn::class,
                 'template' => '{update} {remove} {delete}'
