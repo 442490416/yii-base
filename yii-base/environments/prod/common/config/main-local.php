@@ -33,7 +33,8 @@ MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrOG5Yp/CWoRhB22MJHstyMmkk
 cLoLQphckt4TYDaB17/N3HpKYoB53NJft5VK7/YiuzWQUqpztpIuwXekQ+SDc2t3
 NygIXDRHdcdoaYa48+3xIQ/S3BHRTWUuwBVA+LbgWs2qU11T5Op25iQE31ZXfbye
 +1zmLoOCCprSx6/v6QIDAQAB
------END PUBLIC KEY-----'
+-----END PUBLIC KEY-----',
+            'jsPublicKey'   => '-----BEGIN PUBLIC KEY-----MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrOG5Yp/CWoRhB22MJHstyMmkkcLoLQphckt4TYDaB17/N3HpKYoB53NJft5VK7/YiuzWQUqpztpIuwXekQ+SDc2t3NygIXDRHdcdoaYa48+3xIQ/S3BHRTWUuwBVA+LbgWs2qU11T5Op25iQE31ZXfbye+1zmLoOCCprSx6/v6QIDAQAB-----END PUBLIC KEY-----'
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
