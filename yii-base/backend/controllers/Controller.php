@@ -98,5 +98,7 @@ abstract class Controller extends \common\base\Controller
 
             SessionHelper::success();
         }
+
+        return $this->redirect(['index']);
     }
 }
