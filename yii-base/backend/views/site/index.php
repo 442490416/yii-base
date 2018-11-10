@@ -4,7 +4,7 @@
 
 $this->title = isset($title) ? $title : \Yii::$app->name;
 ?>
-<div class="site-index" style="margin-top: 15%;">
+<div class="site-index" style="margin-top: 20%;">
 
     <div class="jumbotron">
         <h1>恭喜！</h1>
