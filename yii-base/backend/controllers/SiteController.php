@@ -87,6 +87,10 @@ class SiteController extends Controller
                 ]);
             }
 
+            if(!empty($login->password)) {
+                $login->password = \Yii::$app->mcrypt->decrypt($this->password);
+            }
+
             /**
              * 登录
              */

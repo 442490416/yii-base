@@ -109,7 +109,6 @@ class Login extends \common\service\Login
         }
 
         $password = $this->_encryptPassword($this->password);
-        var_dump($password);die;
 
         $this->userInfo = AdminUser::find()
             ->where([

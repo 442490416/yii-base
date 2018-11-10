@@ -39,6 +39,6 @@ class CommonAsset extends Asset
      * Time: 18:33
      */
     public $js = [
-        'js/common.js'.self::VERSION,
+        'js/common.js',
     ];
 }

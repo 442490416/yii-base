@@ -18,8 +18,4 @@ use yii\web\AssetBundle;
  */
 class Asset extends AssetBundle
 {
-    /**
-     *
-     */
-    const VERSION = '?version=18110702';
 }
