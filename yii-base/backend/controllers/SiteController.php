@@ -1,13 +1,11 @@
 <?php
 namespace backend\controllers;
 
-use backend\models\AdminUser;
 use backend\service\Login;
 use common\helpers\ComHelper;
 use Yii;
 use yii\captcha\CaptchaAction;
-use yii\web\Controller;
-use common\models\LoginForm;
+use common\base\Controller;
 
 /**
  * Site controller

@@ -25,7 +25,7 @@ class IndexController extends Controller
      */
     public function actionIndex()
     {
-        return $this->renderFile('@backend/views/site/index',[
+        return $this->render('@backend/views/site/index',[
             'title' => $this->module->name
         ]);
     }

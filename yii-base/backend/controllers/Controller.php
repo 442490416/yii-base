@@ -53,6 +53,8 @@ class Controller extends \common\base\Controller
         }
 
         $this->userInfo = $login->userInfo;
+
+        return true;
     }
 
     /**
