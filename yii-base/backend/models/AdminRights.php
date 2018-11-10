@@ -57,7 +57,7 @@ class AdminRights extends \common\base\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', '改版后台权限表'),
+            'id' => Yii::t('app', '权限'),
             'name' => Yii::t('app', '权限名称'),
             'description' => Yii::t('app', '菜单名称'),
             'level' => Yii::t('app', '级别'),
