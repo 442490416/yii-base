@@ -53,16 +53,12 @@ AppAsset::register($this);
                     <div class="menu_section">
                         <h3>模块</h3>
                         <ul class="nav side-menu">
-                            <li><a><i class="fa fa-ambulance"></i>配置<span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-ambulance"></i>权限<span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="/#">任务</a></li>
-                                    <li><a href="/#">任务</a></li>
-                                </ul>
-                            </li>
-                            <li><a><i class="fa fa-chrome"></i>权限<span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="/#">权限</a></li>
-                                    <li><a href="/#">权限</a></li>
+                                    <li><a href="/rights/admin-user">管理员管理</a></li>
+                                    <li><a href="/rights/admin-rights">权限管理</a></li>
+                                    <li><a href="/rights/admin-role">角色管理</a></li>
+                                    <li><a href="/rights/admin-operate-log">操作日志</a></li>
                                 </ul>
                             </li>
                         </ul>
