@@ -39,7 +39,8 @@ return [
             'name' => 'advanced-backend',
         ],
         'assetManager'=>[
-            'appendTimestamp' => false
+            'appendTimestamp' => false,
+            'linkAssets'      => true,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
