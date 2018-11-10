@@ -12,7 +12,6 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
     'homeUrl' => '/site/index',
     'components' => [
         'request' => [
@@ -63,4 +62,9 @@ return [
         ],
     ],
     'params' => $params,
+    'modules' => [
+        'rights' => [
+            'class' => 'backend\modules\rights\Module'
+        ]
+    ]
 ];

@@ -18,5 +18,10 @@ use backend\controllers\Controller;
  */
 class IndexController extends Controller
 {
-
+    public function actionIndex()
+    {
+        return $this->render('@backend/views/site/index',[
+            'title' => $this->module->name
+        ]);
+    }
 }
