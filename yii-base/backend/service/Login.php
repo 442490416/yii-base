@@ -63,11 +63,13 @@ class Login extends \common\service\Login
     {
         $token = SessionHelper::get('token');
         if(empty($token)) {
+            exit('未获取到');
             return false;
         }
 
         $secretToken = SessionHelper::get($this->tokenKey);
         if(empty($secretToken)) {
+            exit('未获取到密文');
             return false;
         }
 
