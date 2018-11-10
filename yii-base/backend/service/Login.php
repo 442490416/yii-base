@@ -59,7 +59,7 @@ class Login extends \common\service\Login
     protected function _validateToken()
     {
         $token = SessionHelper::get($this->tokenKey);
-        if(empty($secretToken)) {
+        if(empty($token)) {
             return false;
         }
 
