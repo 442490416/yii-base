@@ -34,11 +34,26 @@ use backend\models\AdminRights;
     <?php ActiveForm::end(); ?>
 </div>
 <script type="text/javascript">
-    Page = {};
+    Page = {
+        list:<?=json_encode($list,JSON_UNESCAPED_UNICODE)?>
+    };
 
     Page.init = function() {
         $('#adminrights-level').on('change',function(){
-            var value = $(this).val();
+            var level = parseInt($(this).val());
+            $('#adminrights-parent_id').empty();
+            if(level == 0) {
+                $('#adminrights-parent_id').append('<option value="0">root</option>');
+                return;
+            }
+
+            var parentLevel = level - 1;
+
+            $.each(Page.list,function(index,item){
+                if(parseInt(item.level) == parentLevel) {
+                    $('#adminrights-parent_id').append('<option value="'+item.id+'">'+item.description+'</option>');
+                }
+            })
         });
     }
 </script>
