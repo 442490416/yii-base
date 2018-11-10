@@ -13,13 +13,13 @@ use backend\models\AdminRights;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'level')->dropDownList(AdminRights::$LEVEL_MAP) ?>
 
     <?= $form->field($model, 'parent_id')->dropDownList([]) ?>
+
+    <?= $form->field($model, 'name')->textInput(['placeHolder' => '[app,module,controller,action]名称，限英文']) ?>
+
+    <?= $form->field($model, 'description')->textInput(['placeHolder' => '菜单显示名称，推荐中文']) ?>
 
     <?= $form->field($model, 'range')->textInput() ?>
 
