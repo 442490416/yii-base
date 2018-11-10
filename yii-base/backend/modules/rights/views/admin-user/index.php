@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel backend\models\search\AdminUser */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Admin Users';
+$this->title = '管理员管理';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="admin-user-index">
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Admin User', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('添加管理员', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -29,14 +29,39 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'user_name',
             'true_name',
-            'password',
-            'is_on',
-            //'is_super_admin',
-            //'last_login_ip',
-            //'add_time',
+            //'password',
+            [
+                'attribute' => 'is_on',
+                'value'     => function($model) {
+                    return ($model->is_on == 1) ? '已启用' : '已禁用';
+                },
+                'filter' => [
+                    '0' => '已禁用',
+                    '1' => '已启用'
+                ]
+            ],
+            [
+                'attribute' => 'is_super_admin',
+                'value'     => function($model) {
+                    return ($model->is_super_admin == 1) ? '是' : '否';
+                },
+                'filter'=>[
+                    '0' => '否',
+                    '1' => '是'
+                ]
+            ],
+            [
+                'attribute' => 'last_login_ip',
+                'value'     => function($model) {
+                    return long2ip($model->last_login_ip);
+                },
+                'filter' => false
+            ],
+            'add_time',
             //'update_time:datetime',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => \common\base\ActionColumn::class
+            ],
         ],
     ]); ?>
     <?php Pjax::end(); ?>

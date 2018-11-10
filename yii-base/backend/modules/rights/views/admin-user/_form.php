@@ -18,18 +18,12 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'is_on')->textInput() ?>
+    <?= $form->field($model, 'is_on')->checkbox() ?>
 
-    <?= $form->field($model, 'is_super_admin')->textInput() ?>
-
-    <?= $form->field($model, 'last_login_ip')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'add_time')->textInput() ?>
-
-    <?= $form->field($model, 'update_time')->textInput() ?>
+    <?= $form->field($model, 'is_super_admin')->checkbox() ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('保存', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
