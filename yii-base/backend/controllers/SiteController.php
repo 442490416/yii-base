@@ -69,6 +69,10 @@ class SiteController extends Controller
             $login->userName = $userName;
             $login->password  = $password;
 
+            if(!empty($login->password)) {
+                $login->password = \Yii::$app->mcrypt->decrypt($this->password);
+            }
+
             if(empty($verify)) {
                 return $this->renderPartial('login', [
                     'war' => '验证码必填',
@@ -85,10 +89,6 @@ class SiteController extends Controller
                 return $this->renderPartial('login', [
                     'war' => '验证码错误',
                 ]);
-            }
-
-            if(!empty($login->password)) {
-                $login->password = \Yii::$app->mcrypt->decrypt($this->password);
             }
 
             /**
