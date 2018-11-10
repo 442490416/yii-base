@@ -10,6 +10,7 @@ namespace common\assets;
 
 
 use yii\web\AssetBundle;
+use yii\web\JqueryAsset;
 
 /**
  * Class RsaAsset
@@ -39,6 +40,6 @@ class RsaAsset extends AssetBundle
      * @author 姜海强 <jhq0113@163.com>
      */
     public $depends = [
-        Base64Asset::class
+        JqueryAsset::class
     ];
 }

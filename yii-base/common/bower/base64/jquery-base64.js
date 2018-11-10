@@ -179,22 +179,9 @@ jQuery.base64 = ( function( $ ) {
         return x.join( "" );
     }
 
-    function _urlEncode(s) {
-        var encodeStr = _encode(s);
-        return encodeStr.replace(/\+/g,'-').replace(/\//g,'_');
-    }
-
-    function _urlDecode(s) {
-        var decodeStr = _decode(s);
-        return decodeStr.replace(/-/g,'+').replace(/_/g,'/');
-    }
-
-
     return {
         decode    : _decode,
         encode    : _encode,
-        urlEncode :_urlEncode,
-        urlDecode :_urlDecode,
         VERSION   : _VERSION
     };
 

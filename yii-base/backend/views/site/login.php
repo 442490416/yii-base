@@ -101,7 +101,7 @@ $this->params['breadcrumbs'][] = $this->title;
         $('#login-form').on('beforeValidate',function(){
             var password = $('#password').val();
             password = mcrypter.encrypt(password);
-            password = $.base64.urlEncode(password);
+            console.log(password.urlEncode4Base64());
             $('#password').val(password);
         });
     });
