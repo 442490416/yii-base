@@ -160,6 +160,7 @@ class Login extends \common\service\Login
 
         $result = $this->_validateToken();
         if($result < 1) {
+            exit('token验证失败');
             return false;
         }
 
