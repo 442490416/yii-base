@@ -88,7 +88,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php $this->endBody() ?>
 <script type="text/javascript">
     $(document).ready(function(){
-        var publicKey = '<?=\Yii::$app->mcrypt->publicKey?>';
+        var publicKey = '<?=\Yii::$app->mcrypt->jsPublicKey?>';
         var mcrypter = new JSEncrypt();
         mcrypter.setPublicKey(publicKey);
 

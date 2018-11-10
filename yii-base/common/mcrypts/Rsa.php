@@ -32,6 +32,13 @@ class Rsa extends Mcrypt
     public $publicKey;
 
     /**
+     * @var string
+     * @author Jiang Haiqiang
+     * @email  jhq0113@163.com
+     */
+    public $jsPublicKey;
+
+    /**
      * @var int
      * @author Jiang Haiqiang
      * @email  jhq0113@163.com
