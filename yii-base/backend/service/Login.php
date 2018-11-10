@@ -71,7 +71,7 @@ class Login extends \common\service\Login
             return false;
         }
 
-        return $secretToken === \Yii::$app->mcrypt->encrypt($token);
+        return $token === \Yii::$app->mcrypt->decrypt($secretToken);
     }
 
     /**

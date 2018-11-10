@@ -8,5 +8,5 @@ use backend\service\OperateLog;
  * Time: 下午11:39
  */
 return [
-    OperateLog::LOGIN => '登录成功'
+    OperateLog::LOGIN => 'login success'
 ];
