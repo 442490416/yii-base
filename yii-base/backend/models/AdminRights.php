@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $id 改版后台权限表
  * @property string $name 名称
+ * @property string $module_class module图标
  * @property string $description 菜单名称
  * @property int $level 级别(1模块，2控制器，3操作)
  * @property int $parent_id 父id(模块的父id为0)
@@ -65,7 +66,7 @@ class AdminRights extends \common\base\ActiveRecord
     {
         return [
             [['level', 'parent_id', 'range', 'is_on', 'is_show'], 'integer'],
-            [['name'], 'string', 'max' => 64],
+            [['name','module_class'], 'string', 'max' => 64],
             [['description'], 'string', 'max' => 32],
             [['name', 'level', 'parent_id'], 'unique', 'targetAttribute' => ['name', 'level', 'parent_id']],
         ];
@@ -79,6 +80,7 @@ class AdminRights extends \common\base\ActiveRecord
         return [
             'id' => Yii::t('app', '权限'),
             'name' => Yii::t('app', '权限名称'),
+            'module_class' => Yii::t('app', 'module图标'),
             'description' => Yii::t('app', '菜单名称'),
             'level' => Yii::t('app', '级别'),
             'parent_id' => Yii::t('app', '父id'),

@@ -21,6 +21,10 @@ use backend\models\AdminRights;
 
     <?= $form->field($model, 'description')->textInput(['placeHolder' => '菜单显示名称，推荐中文']) ?>
 
+    <?= $form->field($model, 'module_class')->hiddenInput() ?>
+    <p id="icon_show" class="<?=$model->module_class?> fa-2x" style="margin: 5px;"></p>
+    <p class="btn btn-success" id="btn_select_icon">选择图标</p>
+
     <?= $form->field($model, 'range')->textInput() ?>
 
     <?= $form->field($model, 'is_on')->checkbox() ?>
@@ -32,6 +36,25 @@ use backend\models\AdminRights;
     </div>
 
     <?php ActiveForm::end(); ?>
+</div>
+
+<div class="modal fade" id="select_icon" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">选择图标</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <?= $this->render('_icon') ?>
+                </div>
+            </div>
+            <div class="modal-footer text-center" style="text-align: center;">
+                <button type="button" id="btn_ok" class="btn btn-success">确定</button>
+            </div>
+        </div>
+    </div>
 </div>
 <script type="text/javascript">
     Page = {
@@ -54,6 +77,23 @@ use backend\models\AdminRights;
                     $('#adminrights-parent_id').append('<option value="'+item.id+'">'+item.description+'</option>');
                 }
             })
+        });
+
+        var icon = '<?=$model->module_class?>';
+        $('#btn_select_icon').on('click',function () {
+            $('#select_icon').modal('show');
+        });
+
+        $('.modal-body .row .fa').on('click',function () {
+            $('.modal-body .row .fa').removeClass('icon-select');
+            icon = $(this).attr('class');
+            $(this).addClass('icon-select');
+        });
+
+        $('#btn_ok').on('click',function(){
+            $('#adminrights-module_class').val(icon);
+            $('#icon_show').attr('class',icon+' fa-2x');
+            $('#select_icon').modal('hide');
         });
     }
 </script>
