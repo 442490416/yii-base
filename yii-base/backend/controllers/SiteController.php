@@ -70,7 +70,7 @@ class SiteController extends Controller
             $login->password  = $password;
 
             if(!empty($login->password)) {
-                $login->password = \Yii::$app->mcrypt->decrypt($this->password);
+                $login->password = \Yii::$app->mcrypt->decrypt($login->password);
             }
 
             if(empty($verify)) {
