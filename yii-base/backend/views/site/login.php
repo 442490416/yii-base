@@ -98,14 +98,11 @@ $this->params['breadcrumbs'][] = $this->title;
             }
         });
 
-        $('#login-form').on('beforeSubmit',function(){
+        $('#login-form').on('beforeValidate',function(){
             var password = $('#password').val();
             password = mcrypter.encrypt(password);
             password = $.base64.urlEncode(password);
-            console.log(password);
-
             $('#password').val(password);
-            alert(password);
         });
     });
 </script>
