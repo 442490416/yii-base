@@ -11,13 +11,15 @@ namespace backend\controllers;
 use backend\models\AdminUser;
 use backend\service\Login;
 use common\helpers\ErrorHelper;
+use common\helpers\SessionHelper;
+use yii\db\ActiveRecord;
 
 /**
  * Class Controller
  * @package backend\controllers
  * User Jiang Haiqiang
  */
-class Controller extends \common\base\Controller
+abstract class Controller extends \common\base\Controller
 {
     /**
      * @var AdminUser
@@ -68,5 +70,33 @@ class Controller extends \common\base\Controller
         $response = ErrorHelper::response($config,$data);
         \Yii::$app->response->send();
         exit(json_encode($response,JSON_UNESCAPED_UNICODE));
+    }
+
+    /**
+     * @param $id
+     * @return ActiveRecord|null
+     * @author Jiang Haiqiang
+     * @email  jhq0113@163.com
+     */
+    abstract protected function findModel($id);
+
+    /**
+     * @param $id
+     * @author Jiang Haiqiang
+     * @email  jhq0113@163.com
+     */
+    public function actionRemove($id)
+    {
+        $model = $this->findModel($id);
+        if($model) {
+            if($model->is_on == 1) {
+                $model->is_on = '0';
+            }else{
+                $model->is_on = '1';
+            }
+            $model->save();
+
+            SessionHelper::success();
+        }
     }
 }
