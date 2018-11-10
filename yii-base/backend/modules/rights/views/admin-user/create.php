@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\AdminUser */
 
-$this->title = 'Create Admin User';
-$this->params['breadcrumbs'][] = ['label' => 'Admin Users', 'url' => ['index']];
+$this->title = '添加管理员';
+$this->params['breadcrumbs'][] = ['label' => '管理员管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="admin-user-create">

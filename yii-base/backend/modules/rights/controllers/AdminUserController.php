@@ -50,8 +50,11 @@ class AdminUserController extends Controller
     {
         $model = new AdminUser();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())){
+            $model->password = \Yii::$app->login->encryptPassword($model->password);
+            if($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('create', [
@@ -69,9 +72,19 @@ class AdminUserController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        if($model) {
+            $oldPassword = $model->password;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load(Yii::$app->request->post())) {
+                //如果修改了密码
+                if($oldPassword !== $model->password) {
+                    $model->password = \Yii::$app->login->encryptPassword($model->password);
+                }
+
+                if($model->save()) {
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
+            }
         }
 
         return $this->render('update', [

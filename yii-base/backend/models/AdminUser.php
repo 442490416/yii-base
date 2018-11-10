@@ -35,7 +35,9 @@ class AdminUser extends \common\base\ActiveRecord
         return [
             [['is_on', 'is_super_admin', 'last_login_ip'], 'integer'],
             [['add_time', 'update_time'], 'safe'],
-            [['user_name', 'true_name', 'password'], 'string', 'max' => 32],
+            [['user_name', 'true_name'], 'string', 'max' => 32],
+            [['password'],'required'],
+            [['password'],'string'],
             [['user_name'], 'unique'],
         ];
     }

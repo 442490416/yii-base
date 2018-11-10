@@ -91,7 +91,7 @@ class Login extends \common\service\Login
     {
         $model = new AdminUser();
         $model->user_name     = $userName;
-        $model->password      = $this->_encryptPassword($password);
+        $model->password      = $this->encryptPassword($password);
         $model->update_time   = time();
         $model->last_login_ip = ComHelper::getClientIp();
         return $model->save();
@@ -114,7 +114,7 @@ class Login extends \common\service\Login
             return false;
         }
 
-        $password = $this->_encryptPassword($this->password);
+        $password = $this->encryptPassword($this->password);
 
         $this->userInfo = AdminUser::find()
             ->where([

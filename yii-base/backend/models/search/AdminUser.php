@@ -19,7 +19,7 @@ class AdminUser extends AdminUserModel
     {
         return [
             [['id', 'is_on', 'is_super_admin', 'last_login_ip', 'update_time'], 'integer'],
-            [['user_name', 'true_name', 'password', 'add_time'], 'safe'],
+            [['user_name', 'true_name', 'add_time'], 'safe'],
         ];
     }
 

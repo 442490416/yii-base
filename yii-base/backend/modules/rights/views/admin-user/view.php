@@ -14,27 +14,28 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
             'user_name',
             'true_name',
-            'password',
-            'is_on',
-            'is_super_admin',
-            'last_login_ip',
+            [
+                'attribute'  => 'password',
+                'value'      => '*********'
+            ],
+            [
+                'attribute' => 'is_on',
+                'value'     => ($model->is_on == 1) ? '是' : '否'
+            ],
+            [
+                'attribute' => 'is_super_admin',
+                'value'     => ($model->is_super_admin == 1) ? '是' : '否'
+            ],
+            [
+                'attribute' => 'last_login_ip',
+                'value'     => long2ip($model->last_login_ip)
+            ],
             'add_time',
             'update_time:datetime',
         ],
