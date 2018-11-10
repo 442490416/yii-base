@@ -44,7 +44,7 @@ class SiteController extends Controller
     public function actionIndex()
     {
         if(\Yii::$app->login->isLogin()) {
-            exit('登录成功');
+            return $this->render('index');
         }
         return $this->redirect(['/site/login']);
     }
