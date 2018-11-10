@@ -173,9 +173,15 @@ class Login extends \common\service\Login
 
         $this->userInfo = AdminUser::findOne($userId);
 
-        $this->_filterDangerInfo();
+        if($this->userInfo instanceof AdminUser) {
 
-        return true;
+            $this->userName = $this->userInfo->user_name;
+            $this->_filterDangerInfo();
+
+            return true;
+        }
+
+        return false;
     }
 
     /**
