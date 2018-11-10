@@ -9,14 +9,13 @@
 namespace common\assets;
 
 use yii\web\View;
-use yii\web\AssetBundle;
 
 /**
  * Class BootstrapDatetimePickerAsset
  * @package common\assets
  * User Jiang Haiqiang
  */
-class BootstrapDatetimePickerAsset extends AssetBundle
+class BootstrapDatetimePickerAsset extends Asset
 {
     public $sourcePath = '@common/bower/bootstrap-datetimepicker/dist';
 

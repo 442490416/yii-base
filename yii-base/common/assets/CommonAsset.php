@@ -8,8 +8,6 @@
 
 namespace common\assets;
 
-use yii\web\AssetBundle;
-
 /**
  * Class CommonAsset
  * @package common\assets
@@ -18,7 +16,7 @@ use yii\web\AssetBundle;
  * Date: 2018/11/2
  * Time: 18:35
  */
-class CommonAsset extends AssetBundle
+class CommonAsset extends Asset
 {
     public $sourcePath = '@common/bower/common';
 
@@ -41,6 +39,6 @@ class CommonAsset extends AssetBundle
      * Time: 18:33
      */
     public $js = [
-        'js/common.js',
+        'js/common.js'.self::VERSION,
     ];
 }

@@ -9,14 +9,13 @@
 namespace common\assets;
 
 use yii\web\View;
-use yii\web\AssetBundle;
 
 /**
  * Class SummerAsset
  * @package common\assets
  * User Jiang Haiqiang
  */
-class SummerAsset extends AssetBundle
+class SummerAsset extends Asset
 {
     public $sourcePath = '@common/bower/summernote/dist';
 

@@ -9,8 +9,6 @@
 namespace common\assets;
 
 
-use yii\web\AssetBundle;
-
 /**
  * Class CustomAsset
  * @package common\assets
@@ -19,7 +17,7 @@ use yii\web\AssetBundle;
  * Date: 2018/11/2
  * Time: 18:31
  */
-class CustomAsset extends AssetBundle
+class CustomAsset extends Asset
 {
     public $sourcePath = '@common/bower/custom';
 

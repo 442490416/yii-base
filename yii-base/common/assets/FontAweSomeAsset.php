@@ -8,9 +8,6 @@
 
 namespace common\assets;
 
-
-use yii\web\AssetBundle;
-
 /**
  * Class FontAweSomeAsset
  * @package common\assets
@@ -19,7 +16,7 @@ use yii\web\AssetBundle;
  * Date: 2018/11/2
  * Time: 18:26
  */
-class FontAweSomeAsset extends AssetBundle
+class FontAweSomeAsset extends Asset
 {
     public $sourcePath = '@common/bower/font-awesome';
 

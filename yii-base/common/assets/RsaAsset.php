@@ -8,8 +8,6 @@
 
 namespace common\assets;
 
-
-use yii\web\AssetBundle;
 use yii\web\JqueryAsset;
 
 /**
@@ -17,7 +15,7 @@ use yii\web\JqueryAsset;
  * @package common\assets
  * User Jiang Haiqiang
  */
-class RsaAsset extends AssetBundle
+class RsaAsset extends Asset
 {
     /**
      * @var string

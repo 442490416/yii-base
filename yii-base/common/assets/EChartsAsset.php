@@ -8,8 +8,6 @@
 
 namespace common\assets;
 
-use yii\web\AssetBundle;
-
 /**
  * Class EChartsAsset
  * @package common\assets
@@ -18,7 +16,7 @@ use yii\web\AssetBundle;
  * Date: 2018/11/2
  * Time: 18:22
  */
-class EChartsAsset extends AssetBundle
+class EChartsAsset extends Asset
 {
     public $sourcePath = '@common/bower/echarts/dist';
 
