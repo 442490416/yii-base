@@ -57,7 +57,7 @@ class AdminRightsController extends Controller
 
         return $this->render('create', [
             'model' => $model,
-            'list'  => AdminRights::find()->where(['0','1','2'])->asArray()->all()
+            'list'  => AdminRights::find()->where(['level' => ['0','1','2']])->asArray()->all()
         ]);
     }
 
@@ -78,7 +78,7 @@ class AdminRightsController extends Controller
 
         return $this->render('update', [
             'model' => $model,
-            'list'  => AdminRights::find()->where(['0','1','2'])->asArray()->all()
+            'list'  => AdminRights::find()->where(['level' => ['0','1','2']])->asArray()->all()
         ]);
     }
 
