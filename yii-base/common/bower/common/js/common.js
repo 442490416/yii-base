@@ -19,7 +19,7 @@ String.prototype.replaceAll = function (reallyDo, replaceWith, ignoreCase) {
  * @returns {string}
  */
 String.prototype.urlEncode4Base64 = function(){
-    return this.replaceAll('\+','-').replaceAll('\/','_');
+    return this.replaceAll('\\+','-').replaceAll('\\/','_');
 };
 
 /**
