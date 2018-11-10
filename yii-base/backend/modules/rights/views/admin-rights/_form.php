@@ -67,26 +67,33 @@ use backend\models\AdminRights;
         model:<?=json_encode($model,JSON_UNESCAPED_UNICODE)?>
     };
 
-    Page.init = function() {
-        if($.isEmptyObject(Page.model)) {
+    Page.changeLevel =function(level) {
+        $('#adminrights-parent_id').empty();
+        if(level == 0) {
+            $('#adminrights-parent_id').append('<option value="0">root</option>');
+            return;
+        }
 
+        var parentLevel = level - 1;
+
+        $.each(Page.list,function(index,item){
+            if(parseInt(item.level) == parentLevel) {
+                $('#adminrights-parent_id').append('<option value="'+item.id+'">'+item.description+'</option>');
+            }
+        })
+    };
+
+    Page.init = function() {
+        //初始化父节点
+        if($.isEmptyObject(Page.model)) {
+            var level = parseInt(Page.model.level);
+            Page.changeLevel(level);
+            $('#adminrights-parent_id').val(Page.model.parent_id);
         }
 
         $('#adminrights-level').on('change',function(){
             var level = parseInt($(this).val());
-            $('#adminrights-parent_id').empty();
-            if(level == 0) {
-                $('#adminrights-parent_id').append('<option value="0">root</option>');
-                return;
-            }
-
-            var parentLevel = level - 1;
-
-            $.each(Page.list,function(index,item){
-                if(parseInt(item.level) == parentLevel) {
-                    $('#adminrights-parent_id').append('<option value="'+item.id+'">'+item.description+'</option>');
-                }
-            })
+            Page.changeLevel(level);
         });
 
         var icon = '<?=$model->module_class?>';
