@@ -119,7 +119,8 @@ class Login extends \common\service\Login
         $this->userInfo = AdminUser::find()
             ->where([
                 'user_name' => $this->userName,
-                'password'  => $password
+                'password'  => $password,
+                'is_on'     => '1'
             ])
             ->one();
 
