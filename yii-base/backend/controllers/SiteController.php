@@ -96,7 +96,7 @@ class SiteController extends Controller
              */
             $result = $login->login();
             if($result) {
-                return $this->render('index');
+                return $this->redirect(['/site/index']);
             }
 
             $war = '用户名或者密码错误';
@@ -116,6 +116,6 @@ class SiteController extends Controller
     {
         Yii::$app->login->logout();
 
-        return $this->goHome();
+        return $this->redirect(['/site/login']);
     }
 }

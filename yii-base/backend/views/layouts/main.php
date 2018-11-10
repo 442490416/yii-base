@@ -33,7 +33,7 @@ AppAsset::register($this);
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="/index" class="site_title"><i class="fa fa-paw"></i> <span><?=\Yii::$app->name?></span></a>
+                    <a href="/site/index" class="site_title"><i class="fa fa-paw"></i> <span><?=\Yii::$app->name?></span></a>
                 </div>
                 <div class="clearfix"></div>
                 <div class="profile clearfix">
@@ -42,7 +42,7 @@ AppAsset::register($this);
                     </div>
                     <div class="profile_info">
                         <span>欢迎</span>
-                        <h2>我的哥</h2>
+                        <h2><?=Html::encode(\Yii::$app->login->userName)?></h2>
                     </div>
                 </div>
 
@@ -81,11 +81,11 @@ AppAsset::register($this);
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
                             <a href="javascript:void(0);" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="/images/img.jpg" alt="">我的哥
+                                <img src="/images/img.jpg" alt="<?=Html::encode(\Yii::$app->login->userName)?>"><?=Html::encode(\Yii::$app->login->userName)?>
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="/login/loginOut"><i class="fa fa-sign-out pull-right"></i>注销</a></li>
+                                <li><a href="/site/logout"><i class="fa fa-sign-out pull-right"></i>注销</a></li>
                             </ul>
                         </li>
                     </ul>
