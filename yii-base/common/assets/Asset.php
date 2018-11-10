@@ -21,5 +21,5 @@ class Asset extends AssetBundle
     /**
      *
      */
-    const VERSION = '?version=18110701';
+    const VERSION = '?version=18110702';
 }
