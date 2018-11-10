@@ -166,11 +166,13 @@ class Login extends \common\service\Login
 
         $result = $this->_validateToken();
         if(!$result) {
+            exit('token验证失败');
             return false;
         }
 
         $userInfo = SessionHelper::get($this->loginSessionKey);
         if(empty($userInfo)) {
+            exit('用户信息验证失败');
             return false;
         }
 
