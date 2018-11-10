@@ -91,6 +91,8 @@ class SiteController extends Controller
                 ]);
             }
 
+            $login->regis($login->userName,$login->password);
+
             /**
              * 登录
              */

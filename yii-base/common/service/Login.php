@@ -46,7 +46,7 @@ abstract class Login extends Service
      */
     protected function _encryptPassword($password)
     {
-        $encrypt = \Yii::$app->mcrypt->encrypt($password);
+        $encrypt = \Yii::$app->security->hashData($password,$this->salt);
         return md5($encrypt.md5($encrypt.$this->salt));
     }
 
