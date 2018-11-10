@@ -69,6 +69,18 @@ class Login extends \common\service\Login
     }
 
     /**
+     * @author Jiang Haiqiang
+     * @email  jhq0113@163.com
+     */
+    protected function _filterDangerInfo()
+    {
+        /**
+         * 删除敏感信息
+         */
+        unset($this->password,$this->userInfo->password);
+    }
+
+    /**
      * @param string $userName
      * @param string $password
      * @return bool
@@ -120,15 +132,10 @@ class Login extends \common\service\Login
         $this->userInfo->update_time   = time();
         $this->userInfo->save();
 
-        /**
-         * 删除敏感信息
-         */
-        unset($this->password,$this->userInfo->password);
+        $this->_filterDangerInfo();
 
         //持久化token
         $this->_createToken($this->userInfo->id);
-        //登录信息持久化
-        SessionHelper::set($this->loginSessionKey,serialize($this->userInfo));
 
         //操作日志
         \Yii::$app->operator->log(OperateLog::LOGIN);
@@ -158,19 +165,14 @@ class Login extends \common\service\Login
             return true;
         }
 
-        $result = $this->_validateToken();
-        if($result < 1) {
-            exit('token验证失败');
+        $userId = $this->_validateToken();
+        if($userId < 1) {
             return false;
         }
 
-        $userInfo = SessionHelper::get($this->loginSessionKey);
-        if(empty($userInfo)) {
-            exit('用户信息验证失败');
-            return false;
-        }
+        $this->userInfo = AdminUser::findOne($userId);
 
-        $this->userInfo = unserialize($userInfo);
+        $this->_filterDangerInfo();
 
         return true;
     }
