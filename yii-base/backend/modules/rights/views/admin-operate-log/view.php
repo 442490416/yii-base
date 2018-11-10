@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'operate_desc',
             [
                 'attribute' => 'operate_ip',
-                'value'     => ip2long($model->operate_ip)
+                'value'     => long2ip($model->operate_ip)
             ],
             'add_time',
         ],

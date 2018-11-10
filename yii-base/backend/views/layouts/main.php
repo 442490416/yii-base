@@ -92,6 +92,10 @@ AppAsset::register($this);
         <!--右面内容-->
         <div class="right_col" role="main">
             <?= Breadcrumbs::widget([
+                'homeLink'  => [
+                    'label' => '首页',
+                    'url'   => ['/'],
+                ],
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
             ]) ?>
 
