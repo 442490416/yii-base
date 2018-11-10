@@ -19,7 +19,7 @@ String.prototype.replaceAll = function (reallyDo, replaceWith, ignoreCase) {
  * @returns {string}
  */
 String.prototype.urlEncode4Base64 = function(){
-    return this.replaceAll(/\+/,'-').replaceAll(/\//,'_');
+    return this.replaceAll('\+','-').replaceAll('\/','_');
 };
 
 /**
@@ -27,7 +27,7 @@ String.prototype.urlEncode4Base64 = function(){
  * @returns {string}
  */
 String.prototype.urlDecode4Base64 = function(){
-    return this.replaceAll(/-/,'+').replaceAll(/_/,'/');
+    return this.replaceAll('-','+').replaceAll('_','/');
 };
 
 //------------------------------------Number类扩展--------------------------------------
