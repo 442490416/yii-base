@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use backend\models\AdminRights;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\AdminRights */
@@ -16,20 +17,28 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'level')->textInput() ?>
+    <?= $form->field($model, 'level')->dropDownList(AdminRights::$LEVEL_MAP) ?>
 
-    <?= $form->field($model, 'parent_id')->textInput() ?>
+    <?= $form->field($model, 'parent_id')->dropDownList([]) ?>
 
     <?= $form->field($model, 'range')->textInput() ?>
 
-    <?= $form->field($model, 'is_on')->textInput() ?>
+    <?= $form->field($model, 'is_on')->checkbox() ?>
 
-    <?= $form->field($model, 'is_show')->textInput() ?>
+    <?= $form->field($model, 'is_show')->checkbox() ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('保存', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
-
 </div>
+<script type="text/javascript">
+    Page = {};
+
+    Page.init = function() {
+        $('#adminrights-level').on('change',function(){
+            var value = $(this).val();
+        });
+    }
+</script>

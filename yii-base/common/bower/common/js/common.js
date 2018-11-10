@@ -289,3 +289,12 @@ Date.prototype.time=function () {
         }
     };
 }($));
+
+/**
+ * 初始化页面
+ */
+$(document).ready(function(){
+    if(Page && (typeof Page.init == 'function') ) {
+        Page.init();
+    }
+});

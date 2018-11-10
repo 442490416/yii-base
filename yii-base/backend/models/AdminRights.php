@@ -19,6 +19,18 @@ use Yii;
 class AdminRights extends \common\base\ActiveRecord
 {
     /**
+     * @var array
+     * @author Jiang Haiqiang
+     * @email  jhq0113@163.com
+     */
+    public static $LEVEL_MAP = [
+        '0' => 'application',
+        '1' => 'module',
+        '2' => 'controller',
+        '3' => 'action',
+    ];
+
+    /**
      * {@inheritdoc}
      */
     public static function tableName()
@@ -46,13 +58,13 @@ class AdminRights extends \common\base\ActiveRecord
     {
         return [
             'id' => Yii::t('app', '改版后台权限表'),
-            'name' => Yii::t('app', '名称'),
+            'name' => Yii::t('app', '权限名称'),
             'description' => Yii::t('app', '菜单名称'),
-            'level' => Yii::t('app', '级别(1模块，2控制器，3操作)'),
-            'parent_id' => Yii::t('app', '父id(模块的父id为0)'),
+            'level' => Yii::t('app', '级别'),
+            'parent_id' => Yii::t('app', '父id'),
             'range' => Yii::t('app', '排序'),
-            'is_on' => Yii::t('app', '是否启用(0未启用，1启用)'),
-            'is_show' => Yii::t('app', '是否显示(0不显示，1显示)'),
+            'is_on' => Yii::t('app', '是否启用'),
+            'is_show' => Yii::t('app', '是否显示'),
         ];
     }
 }

@@ -56,7 +56,7 @@ AppAsset::register($this);
                             <li><a><i class="fa fa-ambulance"></i>权限<span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="/rights/admin-user">管理员管理</a></li>
-                                    <li><a href="/rights/admin-rights">权限管理</a></li>
+                                    <li><a href="/rights/admin-rights">权限节点管理</a></li>
                                     <li><a href="/rights/admin-role">角色管理</a></li>
                                     <li><a href="/rights/admin-operate-log">操作日志</a></li>
                                 </ul>

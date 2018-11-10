@@ -15,21 +15,6 @@ use yii\filters\VerbFilter;
 class AdminRightsController extends Controller
 {
     /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
-    /**
      * Lists all AdminRights models.
      * @return mixed
      */
@@ -72,6 +57,7 @@ class AdminRightsController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'list'  => AdminRights::find()->where(['0','1','2'])->asArray()->all()
         ]);
     }
 
@@ -92,6 +78,7 @@ class AdminRightsController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'list'  => AdminRights::find()->where(['0','1','2'])->asArray()->all()
         ]);
     }
 
