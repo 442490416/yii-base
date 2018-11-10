@@ -172,7 +172,10 @@ class Login extends \common\service\Login
             return false;
         }
 
-        $this->userInfo = AdminUser::findOne($userId);
+        $this->userInfo = AdminUser::find()->where([
+            'id'    => $userId,
+            'is_on' => '1'
+        ])->one();
 
         if($this->userInfo instanceof AdminUser) {
 
