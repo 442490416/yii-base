@@ -64,7 +64,7 @@ use backend\models\AdminRights;
 <script type="text/javascript">
     Page = {
         list:<?=json_encode($list,JSON_UNESCAPED_UNICODE)?>,
-        model:<?=json_encode($model,JSON_UNESCAPED_UNICODE)?>
+        model:<?=$model->isNewRecord ? json_encode((object)[]) : json_encode(['level'=>$model->level,'parent_id'=>$model->parent_id],JSON_UNESCAPED_UNICODE)?>
     };
 
     Page.changeLevel =function(level) {
