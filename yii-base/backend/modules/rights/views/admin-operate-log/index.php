@@ -29,7 +29,10 @@ $this->params['breadcrumbs'][] = $this->title;
             //'operate_ip',
             //'add_time',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' =>'{view}',
+            ],
         ],
     ]); ?>
     <?php Pjax::end(); ?>
