@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                    <input type="password" class="form-control has-feedback-left" id="password" name="password" value="<?=Html::encode(\Yii::$app->login->password)?>" placeholder="密码">
+                    <input type="password" class="form-control has-feedback-left" id="password" name="password" autocomplete="false" placeholder="密码">
                     <span class="fa fa-key form-control-feedback left" aria-hidden="true"></span>
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
