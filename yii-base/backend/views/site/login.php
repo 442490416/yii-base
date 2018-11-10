@@ -88,6 +88,10 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php $this->endBody() ?>
 <script type="text/javascript">
     $(document).ready(function(){
+        var publicKey = '<?=\Yii::$app->mcrypt->publicKey?>';
+        var mcrypter = new JSEncrypt();
+        mcrypter.setPublicKey(publicKey);
+
         $('#captcha').on('keydown',function(e) {
             if (e.keyCode == 13) {
                 $('#login-form').submit();
@@ -95,7 +99,7 @@ $this->params['breadcrumbs'][] = $this->title;
         });
 
         $('#login-form').on('beforeSubmit',function(){
-            alert('提交之前');
+
         });
     });
 </script>

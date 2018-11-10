@@ -3,27 +3,28 @@
  * Created by PhpStorm.
  * User: Jiang Haiqiang
  * Date: 2018/11/10
- * Time: 上午10:46
+ * Time: 上午11:43
  */
 
 namespace common\assets;
 
 
 use yii\web\AssetBundle;
+use yii\web\JqueryAsset;
 
 /**
- * Class RsaAsset
+ * Class Base64Asset
  * @package common\assets
  * User Jiang Haiqiang
  */
-class RsaAsset extends AssetBundle
+class Base64Asset extends AssetBundle
 {
     /**
      * @var string
      * @author Jiang Haiqiang
      * @email  jhq0113@163.com
      */
-    public $sourcePath = '@common/bower/rsa';
+    public $sourcePath = '@common/bower/base64';
 
     /**
      * @var array
@@ -31,7 +32,7 @@ class RsaAsset extends AssetBundle
      * @email  jhq0113@163.com
      */
     public $js = [
-        'jsencrypt.min.js',
+        'jquery-base64.js',
     ];
 
     /**
@@ -39,6 +40,6 @@ class RsaAsset extends AssetBundle
      * @author 姜海强 <jhq0113@163.com>
      */
     public $depends = [
-        Base64Asset::class
+        JqueryAsset::class
     ];
 }
