@@ -7,18 +7,13 @@ use yii\widgets\Pjax;
 /* @var $searchModel backend\models\search\AdminOperateLog */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Admin Operate Logs';
+$this->title = '操作日志';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="admin-operate-log-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('Create Admin Operate Log', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

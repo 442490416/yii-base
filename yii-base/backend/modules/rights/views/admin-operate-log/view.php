@@ -7,23 +7,12 @@ use yii\widgets\DetailView;
 /* @var $model backend\models\AdminOperateLog */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Admin Operate Logs', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => '操作日志', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="admin-operate-log-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
 
     <?= DetailView::widget([
         'model' => $model,
@@ -33,7 +22,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'admin_name',
             'router',
             'operate_desc',
-            'operate_ip',
+            [
+                'attribute' => 'operate_ip',
+                'value'     => ip2long($model->operate_ip)
+            ],
             'add_time',
         ],
     ]) ?>
