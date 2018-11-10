@@ -41,7 +41,7 @@ class SessionHelper
     {
         $value = \Yii::$app->session->get($key,$defaultValue);
         if(!empty($value)) {
-            $value = $value = \Yii::$app->mcrypt->decrypt($value);
+            $value = \Yii::$app->mcrypt->decrypt($value);
         }
 
         return $value;
