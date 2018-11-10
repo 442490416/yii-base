@@ -8,6 +8,11 @@ use backend\models\AdminRights;
 /* @var $model backend\models\AdminRights */
 /* @var $form yii\widgets\ActiveForm */
 ?>
+<style type="text/css">
+    .icon-select{
+        color: #F32043;
+    }
+</style>
 
 <div class="admin-rights-form">
 
@@ -63,6 +68,9 @@ use backend\models\AdminRights;
     };
 
     Page.init = function() {
+        if($.isEmptyObject(Page.model)) {
+
+        }
 
         $('#adminrights-level').on('change',function(){
             var level = parseInt($(this).val());
