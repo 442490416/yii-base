@@ -85,7 +85,7 @@ use backend\models\AdminRights;
 
     Page.init = function() {
         //初始化父节点
-        if($.isEmptyObject(Page.model)) {
+        if(!$.isEmptyObject(Page.model)) {
             var level = parseInt(Page.model.level);
             Page.changeLevel(level);
             $('#adminrights-parent_id').val(Page.model.parent_id);
