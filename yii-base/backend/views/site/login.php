@@ -3,8 +3,11 @@
 use yii\helpers\Html;
 use backend\assets\AppAsset;
 use yii\bootstrap\ActiveForm;
+use common\assets\RsaAsset;
 
 AppAsset::register($this);
+
+RsaAsset::register($this);
 
 /* @var $this  \yii\web\View */
 /* @var $model \backend\models\AdminUser */
@@ -83,7 +86,19 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 <?php $this->endBody() ?>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#captcha').on('keydown',function(e) {
+            if (e.keyCode == 13) {
+                $('#login-form').submit();
+            }
+        });
 
+        $('#login-form').on('beforeSubmit',function(){
+            alert('提交之前');
+        });
+    });
+</script>
 </body>
 </html>
 <?php $this->endPage() ?>
