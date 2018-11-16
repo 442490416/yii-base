@@ -2,10 +2,14 @@
 
 namespace backend\modules\rights\controllers;
 
+use backend\models\AdminRole;
+use backend\models\AdminUserRole;
+use common\helpers\SessionHelper;
 use Yii;
 use backend\models\AdminUser;
 use backend\models\search\AdminUser as AdminUserSearch;
 use backend\controllers\Controller;
+use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -104,6 +108,51 @@ class AdminUserController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    /**
+     * @param $id
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException
+     * @author Jiang Haiqiang
+     * @email  jhq0113@163.com
+     */
+    public function actionRoleSet($id)
+    {
+        if(\Yii::$app->request->isPost) {
+            return;
+        }
+
+        $model = $this->findModel($id);
+        if(!$model) {
+            SessionHelper::error('管理员不存在');
+            return $this->redirect(['index']);
+        }
+
+        $roleList = AdminRole::find()
+            ->where(['is_on'=>'1'])
+            ->asArray()
+            ->all();
+
+        $adminRoleList = AdminUserRole::find()
+            ->where(['admin_id' => $model->id ])
+            ->asArray()
+            ->all();
+
+        if(!empty($roleList)) {
+            $roleList = array_column($roleList,'role_name','id');
+        }
+
+        $hasRoleIds = [];
+        if(!empty($adminRoleList)) {
+            $hasRoleIds = array_column($adminRoleList,'role_id');
+        }
+
+        return $this->render('role-set',[
+            'model'          => $model,
+            'roleList'       => $roleList,
+            'hasRoleIds'     => $hasRoleIds
+        ]);
     }
 
     /**
