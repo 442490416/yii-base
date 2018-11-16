@@ -131,7 +131,7 @@ AppAsset::register($this);
     };
 
     Page.initEvent = function () {
-        $('#menu_toggle .fa-bars').on('click',function(){
+        $(window).on('unload',function(){
             Page.barIsSmall = $('body').hasClass('nav-sm');
             $.cache.set('barStatus',Page.barIsSmall);
         });
