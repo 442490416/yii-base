@@ -48,13 +48,13 @@ class AdminUser extends \common\base\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', '后台用户表'),
-            'user_name' => Yii::t('app', '登录用户名'),
+            'id' => Yii::t('app', '用户id'),
+            'user_name' => Yii::t('app', '登录名'),
             'true_name' => Yii::t('app', '真实姓名'),
             'password' => Yii::t('app', '登录密码'),
             'is_on' => Yii::t('app', '是否启用'),
             'is_super_admin' => Yii::t('app', '是否为超管'),
-            'last_login_ip' => Yii::t('app', '最后一次登录ip'),
+            'last_login_ip' => Yii::t('app', '上次登录ip'),
             'add_time' => Yii::t('app', '注册时间'),
             'update_time' => Yii::t('app', '修改时间'),
         ];
