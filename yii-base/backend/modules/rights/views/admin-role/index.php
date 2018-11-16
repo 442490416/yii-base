@@ -41,7 +41,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'add_time',
             'update_time:datetime',
             [
-                'class' => \common\base\ActionColumn::class
+                'class' => \common\base\ActionColumn::class,
+                'template' => '{view} {update} {role-right-set} {remove} {delete}',
+                'buttons'  => [
+                    'role-right-set' => function($url, $model, $key) {
+                        $icon = Html::tag('span', '', ['class' => "glyphicon glyphicon-credit-card"]);
+                        return Html::a($icon, $url, ['title'=>'角色权限管理']);
+                    }
+                ]
             ],
         ],
     ]); ?>

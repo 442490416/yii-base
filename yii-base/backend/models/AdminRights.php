@@ -89,4 +89,15 @@ class AdminRights extends \common\base\ActiveRecord
             'is_show' => Yii::t('app', '是否显示'),
         ];
     }
+
+    /**
+     * @param array $list
+     * @return array
+     * @author Jiang Haiqiang
+     * @email  jhq0113@163.com
+     */
+    public static function format($list)
+    {
+        return $list;
+    }
 }

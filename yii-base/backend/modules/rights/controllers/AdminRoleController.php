@@ -2,6 +2,9 @@
 
 namespace backend\modules\rights\controllers;
 
+use backend\models\AdminAccess;
+use backend\models\AdminRights;
+use common\helpers\SessionHelper;
 use Yii;
 use backend\models\AdminRole;
 use backend\models\search\AdminRole as AdminRoleSearch;
@@ -107,6 +110,49 @@ class AdminRoleController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionRoleRightSet($id)
+    {
+        $model = $this->findModel($id);
+        if(!$model) {
+            SessionHelper::error('角色不存在');
+            return $this->redirect(['index']);
+        }
+
+        if(\Yii::$app->request->isPost) {
+            SessionHelper::success();
+            return $this->redirect(['index']);
+        }
+
+        $rightList = AdminRights::find()
+            ->where([
+                'is_on' => '1',
+            ])
+            ->orderBy([
+                'level' => SORT_ASC,
+                'range' => SORT_ASC
+            ])
+            ->asArray()
+            ->all();
+
+        $rightList = AdminRights::format($rightList);
+
+        $hasRightIds = AdminAccess::find()
+            ->where([
+                'role_id'=>$model->id
+            ])
+            ->asArray()
+            ->all();
+        if(!empty($hasRightIds)) {
+            $hasRightIds = array_column($hasRightIds,'right_id');
+        }
+
+        return $this->render('role-right-set',[
+            'model'       => $model,
+            'rightList'   => $rightList,
+            'hasRightIds' => $hasRightIds
+        ]);
     }
 
     /**
