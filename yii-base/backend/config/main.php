@@ -14,6 +14,9 @@ return [
     'bootstrap' => ['log'],
     'homeUrl' => '/site/index',
     'components' => [
+        'formatter' => [
+            'dateFormat' => 'Y-m-d H:i:s',
+        ],
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
