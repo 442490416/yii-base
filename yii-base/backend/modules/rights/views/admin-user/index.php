@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'filter' => false
             ],
-            'add_time',
+            //'add_time',
             //'update_time:datetime',
             [
                 'class'    => \common\base\ActionColumn::class,
