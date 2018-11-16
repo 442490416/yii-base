@@ -13,7 +13,7 @@ use yii\widgets\ActiveForm;
 /* @var $model backend\models\AdminUser */
 /* @var $form yii\widgets\ActiveForm */
 
-$this->title = '编辑管理员角色';
+$this->title = '编辑['.$model->true_name.']角色';
 $this->params['breadcrumbs'][] = ['label' => '管理员管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = '编辑管理员角色';
 
