@@ -111,6 +111,11 @@ AppAsset::register($this);
 
 
 <?php $this->endBody() ?>
+<script type="text/javascript">
+    $(document).ready(function () {
+        CURRENT_URL = 'http://'+window.location.host+'/<?=\Yii::$app->module->id.'/'.\Yii::$app->controller->id?>';
+    });
+</script>
 </body>
 </html>
 <?php $this->endPage() ?>
