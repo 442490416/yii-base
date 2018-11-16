@@ -60,7 +60,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'add_time',
             //'update_time:datetime',
             [
-                'class' => \common\base\ActionColumn::class
+                'class'    => \common\base\ActionColumn::class,
+                'template' => '{view} {update} {role-set} {remove} {delete}',
+                'buttons'  => [
+                    'role-set' => function($url, $model, $key) {
+                        $icon = Html::tag('span', '', ['class' => "glyphicon glyphicon-transfer"]);
+                        return Html::a($icon, $url, ['title'=>'角色管理']);
+                    }
+                ]
             ],
         ],
     ]); ?>
