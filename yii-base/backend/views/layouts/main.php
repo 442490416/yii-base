@@ -112,9 +112,16 @@ AppAsset::register($this);
 
 <?php $this->endBody() ?>
 <script type="text/javascript">
-    //$(document).ready(function () {
+    Page.init = function(){
         CURRENT_URL = 'http://'+window.location.host+'/<?=\Yii::$app->controller->module->id.'/'.\Yii::$app->controller->id?>';
-    //});
+        this.initEvent();
+    };
+
+    Page.initEvent = function () {
+        $('#menu_toggle .fa .fa-bars').on('click',function(){
+            console.log($('body').attr('class'));
+        });
+    };
 </script>
 </body>
 </html>
