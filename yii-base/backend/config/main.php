@@ -15,7 +15,7 @@ return [
     'homeUrl' => '/site/index',
     'components' => [
         'formatter' => [
-            'dateFormat' => 'Y-m-d H:i:s',
+            'datetimeFormat' => 'Y-m-d H:i:s',
         ],
         'request' => [
             'csrfParam' => '_csrf-backend',
