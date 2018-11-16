@@ -25,8 +25,6 @@ $this->params['breadcrumbs'][] = '编辑管理员角色';
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= Html::hiddenInput('admin-id',$model->id) ?>
-
     <?= Html::checkboxList('user-roles',$hasRoleIds,$roleList,[
         'id' => 'user-roles'
     ]) ?>

@@ -119,15 +119,28 @@ class AdminUserController extends Controller
      */
     public function actionRoleSet($id)
     {
-        if(\Yii::$app->request->isPost) {
-            return;
-        }
-
         $model = $this->findModel($id);
         if(!$model) {
             SessionHelper::error('管理员不存在');
             return $this->redirect(['index']);
         }
+
+        if(\Yii::$app->request->isPost) {
+            AdminUserRole::deleteAll([ 'admin_id'=>$model->id ]);
+            if(isset($_POST['user-roles']) || !empty($_POST['user-roles'])) {
+                $userRoleIds = $_POST['user-roles'];
+                foreach ($userRoleIds as $roleId) {
+                    $userRoleModel = new AdminUserRole();
+                    $userRoleModel->admin_id = $model->id;
+                    $userRoleModel->role_id  = (int)$roleId;
+                    $userRoleModel->save();
+                }
+            }
+
+            SessionHelper::success();
+            return $this->redirect(['index']);
+        }
+
 
         $roleList = AdminRole::find()
             ->where(['is_on'=>'1'])
