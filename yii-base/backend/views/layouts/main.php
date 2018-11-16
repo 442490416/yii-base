@@ -112,14 +112,28 @@ AppAsset::register($this);
 
 <?php $this->endBody() ?>
 <script type="text/javascript">
+    CURRENT_URL = 'http://'+window.location.host+'/<?=\Yii::$app->controller->module->id.'/'.\Yii::$app->controller->id?>';
+
+    /**
+     * 左侧是否为小侧栏
+     */
+    Page.barIsSmall = $.cache.get('barStatus');
+
     Page.init = function(){
-        CURRENT_URL = 'http://'+window.location.host+'/<?=\Yii::$app->controller->module->id.'/'.\Yii::$app->controller->id?>';
         this.initEvent();
+        this.initBar();
+    };
+
+    Page.initBar = function() {
+        if(Page.barIsSmall) {
+            $('#menu_toggle .fa-bars').click();
+        }
     };
 
     Page.initEvent = function () {
         $('#menu_toggle .fa-bars').on('click',function(){
-            console.log($('body').attr('class'));
+            Page.barIsSmall = $('body').hasClass('sm');
+            $.cache.set('barStatus',Page.barIsSmall);
         });
     };
 </script>
