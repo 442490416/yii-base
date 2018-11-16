@@ -118,7 +118,7 @@ AppAsset::register($this);
     };
 
     Page.initEvent = function () {
-        $('#menu_toggle .fa .fa-bars').on('click',function(){
+        $('#menu_toggle .fa-bars').on('click',function(){
             console.log($('body').attr('class'));
         });
     };
