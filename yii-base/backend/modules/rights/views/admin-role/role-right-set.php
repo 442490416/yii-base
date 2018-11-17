@@ -52,15 +52,21 @@ $this->params['breadcrumbs'][] = '编辑角色权限';
                     console.log(event,data);
                 },
                 onNodeUnchecked:function(event, data){
-                    if(parseInt(data.level) < 3) {
+                    var level = parseInt(data.level);
+                    if(level < 3) {
                         if(typeof data.nodes != 'undefined' && !$.isEmptyObject(data.nodes)) {
                             $.each(data.nodes,function(index,item) {
                                 $('#rightTree').treeview('uncheckNode', [ item.nodeId, { silent: true } ]);
                             });
                         }
-                    }else {
-
                     }
+
+                    if(level >0) {
+                        var siblings = $('#tree').treeview('getSiblings', data.nodeId);
+                        var parent = $('#tree').treeview('getParent', data.nodeId);
+                        console.log(siblings,parent);
+                    }
+
                 }
             });
 
