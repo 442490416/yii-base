@@ -17,8 +17,8 @@ $this->title = $name;
         <?= nl2br(Html::encode($message)) ?>
     </div>
 
-    <p>
-      <span id="second" style="color: #F32043;font-size: 14px;">5</span>秒后自动返回
+    <p style="text-align: center;font-size: 20px;">
+      <span id="second" style="color: #F32043;">3</span>秒后自动返回
     </p>
 
     <div style="text-align: center;margin-top: 20%;">
@@ -26,7 +26,7 @@ $this->title = $name;
     </div>
     <script type="text/javascript">
         Page.initPage =function() {
-            var num = 5;
+            var num = 3;
             var timer = setInterval(function(){
                 num--;
                 $('#second').html(num);
