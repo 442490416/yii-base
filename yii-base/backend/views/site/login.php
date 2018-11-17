@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php $this->beginBody() ?>
 <div style="margin: 15% auto;text-align: center;">
-    <div class="x_panel" style="width: 30%;">
+    <div class="x_panel" style="width: 380px;">
         <div class="x_title">
             <h2><?=\Yii::$app->name?> <small>后台系统</small></h2>
             <div class="clearfix"></div>
