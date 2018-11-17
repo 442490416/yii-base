@@ -122,6 +122,10 @@ AppAsset::register($this);
     Page.init = function(){
         this.initEvent();
         this.initBar();
+
+        if(typeof this.initPage == 'function') {
+            this.initPage();
+        }
     };
 
     Page.initBar = function() {

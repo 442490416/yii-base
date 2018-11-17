@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = '编辑角色权限';
     <div id="rightTree"></div>
 
     <script type="text/javascript">
-        $(document).ready(function () {
+        Page.initPage = function () {
             var data = <?php echo json_encode($treeViewList);?>;
 
             //初始化树结构
@@ -73,6 +73,6 @@ $this->params['breadcrumbs'][] = '编辑角色权限';
                     }
                 });
             });
-        });
+        }
     </script>
 </div>
