@@ -51,6 +51,9 @@ $this->params['breadcrumbs'][] = '编辑角色权限';
                 onNodeChecked:function(event, data){
                     if(parseInt(data.level) > 0) {
                         var parent = $('#rightTree').treeview('getParent', data.nodeId);
+                        if(!$.isEmptyObject(parent)) {
+                            $('#rightTree').treeview('checkNode', [ parent.nodeId, { silent: true } ]);
+                        }
                     }
                 },
                 onNodeUnchecked:function(event, data){
@@ -65,8 +68,21 @@ $this->params['breadcrumbs'][] = '编辑角色权限';
 
                     if(level >0) {
                         var siblings = $('#rightTree').treeview('getSiblings', data.nodeId);
-                        var parent = $('#rightTree').treeview('getParent', data.nodeId);
-                        console.log(siblings,parent);
+                        if(!$.isEmptyObject(siblings)) {
+                            var isEmpty = true;
+                            $.each(siblings,function(index,item){
+                                if(item.state.checked) {
+                                    isEmpty = false;
+                                }
+                            });
+
+                            if(isEmpty) {
+                                var parent = $('#rightTree').treeview('getParent', data.nodeId);
+                                if(!$.isEmptyObject(parent)) {
+                                    $('#rightTree').treeview('uncheckNode', [ parent.nodeId, { silent: true } ]);
+                                }
+                            }
+                        }
                     }
 
                 }
