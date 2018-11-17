@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                     <?=\yii\captcha\Captcha::widget([
-                        'name'=>'captcha',
+                        'name'=>'captcha-img',
                         'captchaAction'=>'/site/captcha',
                         'imageOptions'=>[
                             'id'=>'captchaimg',
@@ -97,6 +97,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
         $('#captcha').on('keyup',function(e) {
             if (e.keyCode == 13) {
+                if($(this).val() =='') {
+                    return;
+                }
                 $('#btn-submit').click();
             }
         });
