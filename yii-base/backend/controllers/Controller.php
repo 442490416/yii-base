@@ -60,7 +60,7 @@ abstract class Controller extends \common\base\Controller
         $access = Right::self()->checkAccess();
 
         if(!$access) {
-            if(\Yii::$app->request->isAjax) {
+            if(\Yii::$app->request->getIsAjax()) {
                 $this->response(ErrorHelper::$ERROR_FORBIDDEN);
             }
 
