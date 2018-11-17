@@ -10,8 +10,8 @@ namespace backend\service;
 
 use backend\models\AdminAccess;
 use backend\models\AdminRights;
-use backend\models\AdminRole;
 use backend\models\AdminUser;
+use backend\models\AdminUserRole;
 use common\base\Service;
 
 /**
@@ -61,7 +61,7 @@ class Right extends Service
                 ->all();
             $this->rightList = AdminRights::format($rightList);
         } else {
-            $roleIds = AdminRole::find()
+            $roleIds = AdminUserRole::find()
                 ->where([
                     'admin_id' => $this->userInfo->id
                 ])
