@@ -106,8 +106,7 @@ class AdminRights extends \common\base\ActiveRecord
         $idParentIdMap   = array_column($rightList,'parent_id','id');
 
         foreach ($rightList as $right) {
-            $right['text'] = $right['description'];
-            //.'-'.self::$LEVEL_MAP[ $right['level'] ];
+            $right['text'] = $right['description'].'-'.self::$LEVEL_MAP[ $right['level'] ];
 
             if($right['level'] === self::APP){        //填充application
                 $appId     = $right['id'];
