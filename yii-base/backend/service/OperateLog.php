@@ -22,6 +22,9 @@ use yii\log\LogRuntimeException;
  */
 class OperateLog extends Service
 {
+    /**
+     * 登录
+     */
     const LOGIN = 'LOGIN';
 
     /**

@@ -7,8 +7,11 @@ use backend\assets\AppAsset;
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
+use backend\service\Right;
 
 AppAsset::register($this);
+
+$rightList = Right::self()->rightList;
 
 ?>
 
@@ -53,19 +56,22 @@ AppAsset::register($this);
 
                 <!-- 菜单 -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-                    <div class="menu_section">
-                        <h3>模块</h3>
-                        <ul class="nav side-menu">
-                            <li><a><i class="fa fa-ambulance"></i>权限<span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="/rights/admin-user">管理员管理</a></li>
-                                    <li><a href="/rights/admin-rights">权限节点管理</a></li>
-                                    <li><a href="/rights/admin-role">角色管理</a></li>
-                                    <li><a href="/rights/admin-operate-log">操作日志</a></li>
+                    <?php foreach ($rightList as $app):?>
+                        <div class="menu_section">
+                            <h3>模块</h3>
+                            <?php foreach ($app['nodes'] as $module):?>
+                                <ul class="nav side-menu">
+                                    <li><a><i class="fa fa-ambulance"></i><?=$module['description']?><span class="<?=$module['module_class']?>"></span></a>
+                                        <ul class="nav child_menu">
+                                            <?php foreach ($module['nodes'] as $controller):?>
+                                                <li><a href="/<?=$module['name'].'/'.$controller['name']?>"><?=$controller['description']?></a></li>
+                                            <?php endforeach;?>
+                                        </ul>
+                                    </li>
                                 </ul>
-                            </li>
-                        </ul>
-                    </div>
+                            <?php endforeach;?>
+                        </div>
+                    <?php endforeach;?>
                 </div>
             </div>
         </div>
