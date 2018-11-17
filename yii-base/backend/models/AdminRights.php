@@ -154,42 +154,55 @@ class AdminRights extends \common\base\ActiveRecord
     public static function formatRightList2TreeView($formatRightList,$rightIds)
     {
         $treeViewList = [];
-        foreach ($formatRightList as $module) {
-            //增加module选中状态
-            $module['state'] = [
-                'checked'   => isset($rightIds[ $module['id'] ])
+        foreach ($formatRightList as $app) {
+            //增加app选中状态
+            $app['state'] = [
+                'checked'   => isset($rightIds[ $app['id'] ])
             ];
 
-            if(!isset($module['nodes'])) {
-                array_push($treeViewList,$module);
+            if(!isset($app['nodes'])) {
+                array_push($treeViewList,$app);
                 continue;
             }
 
-            foreach ($module['nodes'] as $key => $controller) {
-                //增加controller选中状态
-                $module['nodes'][ $key ]['state'] =[
-                    'checked'   => isset($rightIds[ $controller['id'] ])
+            foreach ($app['nodes'] as $moduleIndex => $module) {
+                //增加module选中状态
+                $module['state'] = [
+                    'checked'   => isset($rightIds[ $module['id'] ])
                 ];
 
-                if(!isset($controller['nodes'])) {
+                if(!isset($module['nodes'])) {
                     continue;
                 }
-                //整理action节点
-                $module['nodes'][ $key ]['nodes'] = array_values($controller['nodes']);
 
-                //增加action选中状态
-                $module['nodes'][ $key ]['nodes'] = array_map(function($value)use($rightIds){
-                    $value['state'] = [
-                        'checked'   => isset($rightIds[ $value['id'] ])
+                foreach ($module['nodes'] as $controllerIndex => $controller) {
+                    //增加controller选中状态
+                    $module['nodes'][ $controllerIndex ]['state'] =[
+                        'checked'   => isset($rightIds[ $controller['id'] ])
                     ];
-                    return $value;
-                },$module['nodes'][ $key ]['nodes']);
+
+                    if(!isset($controller['nodes'])) {
+                        continue;
+                    }
+                    //整理action节点
+                    $module['nodes'][ $controllerIndex ]['nodes'] = array_values($controller['nodes']);
+
+                    //增加action选中状态
+                    $module['nodes'][ $controllerIndex ]['nodes'] = array_map(function($value)use($rightIds){
+                        $value['state'] = [
+                            'checked'   => isset($rightIds[ $value['id'] ])
+                        ];
+                        return $value;
+                    },$module['nodes'][ $controllerIndex ]['nodes']);
+                }
+
+                $module['nodes'] = array_values($module['nodes']);
+
+                //整理controller节点
+                $app['nodes'][ $moduleIndex ] = $module;
             }
 
-            //整理controller节点
-            $module['nodes'] = array_values($module['nodes']);
-
-            array_push($treeViewList,$module);
+            array_push($treeViewList,$app);
         }
 
         return $treeViewList;
