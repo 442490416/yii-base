@@ -118,7 +118,7 @@ $rightList = Right::self()->rightList;
     </div>
 </div>
 
-<div class="modal-dialog" id="common-alert">
+<div class="modal-dialog" id="common-alert" style="display: none;">
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -132,7 +132,7 @@ $rightList = Right::self()->rightList;
     </div>
 </div>
 
-<div class="modal-dialog" id="common-confirm">
+<div class="modal-dialog" id="common-confirm" style="display: none;">
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
