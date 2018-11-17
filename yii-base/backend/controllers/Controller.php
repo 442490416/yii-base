@@ -66,10 +66,12 @@ abstract class Controller extends \common\base\Controller
 
             SessionHelper::warning('权限不够');
 
-            return $this->render('@backend/views/site/error',[
+            $html = $this->render('@backend/views/site/error',[
                 'name'     => '权限不够',
                 'message'  => '权限不够'
             ]);
+
+            exit($html);
         }
 
         return $access;
