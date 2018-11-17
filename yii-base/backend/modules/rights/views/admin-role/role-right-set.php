@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = '编辑角色权限';
                 },
                 onNodeUnchecked:function(event, data){
                     if(parseInt(data.level) < 3) {
-                        if(typeof data.nodes != 'undefined' && $.isEmptyObject(data.nodes)) {
+                        if(typeof data.nodes != 'undefined' && !$.isEmptyObject(data.nodes)) {
                             $.each(data.nodes,function(index,item) {
                                 $('#rightTree').treeview('uncheckNode', [ item.id, { silent: true } ]);
                             });
