@@ -66,8 +66,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     ])?>
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <input type="text" class="form-control has-feedback-left" id="captcha" name="captcha" placeholder="验证码">
-                        <span class="fa fa-qrcode form-control-feedback left" aria-hidden="true"></span>
+                    <input type="text" class="form-control has-feedback-left" id="captcha" name="captcha" placeholder="验证码">
+                    <span class="fa fa-qrcode form-control-feedback left" aria-hidden="true"></span>
                 </div>
             </div>
             <div class="x_content">
@@ -78,7 +78,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
                 <div class="form-group">
                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                        <button type="submit" class="btn btn-success">登录</button>
+                        <button type="submit" class="btn btn-success" id="btn-submit">登录</button>
                     </div>
                 </div>
             </div>
@@ -94,7 +94,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         $('#captcha').on('keydown',function(e) {
             if (e.keyCode == 13) {
-                $('#login-form').submit();
+                $('#btn-submit').click();
             }
         });
 
