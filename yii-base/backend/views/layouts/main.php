@@ -61,7 +61,7 @@ $rightList = Right::self()->rightList;
                             <h3>模块</h3>
                             <?php foreach ($app['nodes'] as $module):?>
                                 <ul class="nav side-menu">
-                                    <li><a><i class="fa fa-ambulance"></i><?=$module['description']?><span class="<?=$module['module_class']?>"></span></a>
+                                    <li><a><i class="<?=$module['module_class']?>"></i><?=$module['description']?><span class="<?=$module['module_class']?>"></span></a>
                                         <ul class="nav child_menu">
                                             <?php foreach ($module['nodes'] as $controller):?>
                                                 <li><a href="/<?=$module['name'].'/'.$controller['name']?>"><?=$controller['description']?></a></li>
