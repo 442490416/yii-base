@@ -64,7 +64,7 @@ abstract class Controller extends \common\base\Controller
                 $this->response(ErrorHelper::$ERROR_FORBIDDEN);
             }
 
-            $this->error('权限不够','权限不够');
+            $this->error('权限不够','权限不够',$_SERVER['HTTP_REFERER']);
         }
 
         return $access;
