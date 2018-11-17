@@ -199,7 +199,7 @@ Date.prototype.time=function () {
 
         var successCallback = data.success;
         var errorCallback   = data.error ? data.error : function (err) {
-            console.log(err);
+            delete obj.block[ data.url ];
         };
 
         var params = {
@@ -209,13 +209,9 @@ Date.prototype.time=function () {
         };
 
         //通用成功回调
-        data.success = function (result) {
+        data.success = function (response) {
             delete obj.block[ data.url ];
-            if(result.code && result.code == obj.FORBIDDEN) {
-                alert(result.msg);
-            }else {
-                successCallback(result);
-            }
+            successCallback(response);
         };
 
         //通用异常回调

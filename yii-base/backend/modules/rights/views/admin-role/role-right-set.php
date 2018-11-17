@@ -103,10 +103,10 @@ $this->params['breadcrumbs'][] = '编辑角色权限';
                     ids.push(item['id']);
                 });
 
-                $.comAjax({
+                Page.ajax({
                     url     :   '<?=Url::toRoute(['role-right-set'])?>?id=<?=$model->id?>',
                     data    :   { ids : ids },
-                    success :   function (result) {
+                    success :   function (response) {
                         window.location.reload();
                     }
                 });

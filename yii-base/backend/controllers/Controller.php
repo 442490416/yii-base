@@ -10,6 +10,7 @@ namespace backend\controllers;
 
 use backend\models\AdminUser;
 use backend\service\Login;
+use backend\service\Right;
 use common\helpers\ErrorHelper;
 use common\helpers\SessionHelper;
 use yii\db\ActiveRecord;
@@ -56,7 +57,17 @@ abstract class Controller extends \common\base\Controller
 
         $this->userInfo = $login->userInfo;
 
-        return true;
+        $access = Right::self()->checkAccess();
+        if(!$access) {
+            if(\Yii::$app->request->isAjax) {
+                $this->response(ErrorHelper::$ERROR_FORBIDDEN);
+            }
+
+            SessionHelper::warning('权限不够');
+            return $this->redirect($_SERVER['HTTP_REFERER']);
+        }
+
+        return $access;
     }
 
     /**

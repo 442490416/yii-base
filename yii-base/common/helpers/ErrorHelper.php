@@ -41,6 +41,16 @@ class ErrorHelper
     ];
 
     /**
+     * @var array
+     * @author Jiang Haiqiang
+     * @email  jhq0113@163.com
+     */
+    public static $ERROR_FORBIDDEN = [
+        'code' => '30002',
+        'msg'  => '权限不够'
+    ];
+
+    /**
      * @param array $config
      * @param array $data
      * @return array

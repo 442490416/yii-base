@@ -118,8 +118,36 @@ $rightList = Right::self()->rightList;
     </div>
 </div>
 
+<div class="modal-dialog" id="common-alert">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title"></h4>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        </div>
+    </div>
+</div>
 
+<div class="modal-dialog" id="common-confirm">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title"></h4>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary confirm">确定</button>
+        </div>
+    </div>
+</div>
 <?php $this->endBody() ?>
+
 <script type="text/javascript">
     CURRENT_URL = 'http://'+window.location.host+'/<?=\Yii::$app->controller->module->id.'/'.\Yii::$app->controller->id?>';
 
@@ -149,6 +177,52 @@ $rightList = Right::self()->rightList;
             $.cache.set('barStatus',Page.barIsSmall);
         });
     };
+
+    Page.ajax =function(data) {
+        var successCallback = data.success;
+        data.success = function (response) {
+            if(response && response.code && response.code != '20000') {
+                Page.alert(response.msg);
+            }else {
+                successCallback(response);
+            }
+        };
+
+        $.comAjax(data);
+    };
+
+    /**
+     * alert
+     * @param {string} msg
+     * @param {string} title
+     */
+    Page.alert = function (msg,title) {
+        title = title ? title : '操作提示';
+        var element = $('#common-alert');
+        element.find('.modal-title').html(title);
+        element.find('.modal-body').html(msg);
+        element.modal('show');
+    };
+
+    /**
+     *
+     * @param {function} callback
+     * @param {string}   body
+     * @param {string}   title
+     */
+    Page.confirm = function(callback,body,title) {
+        title = title ? title : '操作提示';
+        var element = $('#common-confirm');
+        element.find('.modal-title').html(title);
+        element.find('.modal-body').html(body);
+
+        $('#common-confirm .confirm').once('click',function () {
+            callback(true);
+        });
+
+        element.modal('show');
+    };
+
 </script>
 </body>
 </html>

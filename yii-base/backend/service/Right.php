@@ -101,10 +101,38 @@ class Right extends Service
         }
     }
 
+    /**
+     * @return bool
+     * @author Jiang Haiqiang
+     * @email  jhq0113@163.com
+     */
     public function checkAccess()
     {
         if($this->userInfo->is_super_admin == '1') {
             return true;
         }
+
+        $route = \Yii::$app->requestedRoute;
+        if($route === BACKEND_INDEX_ROUTE) {
+            return true;
+        }
+
+        foreach ($this->rightList as $app) {
+            foreach ($app['nodes'] as $module) {
+                if($module['name'] === \Yii::$app->controller->module->id) {
+                    foreach ($module['nodes'] as $controller) {
+                        if($controller['name'] === \Yii::$app->controller->id) {
+                            foreach ($controller['nodes'] as $action) {
+                                if($action['name'] === \Yii::$app->controller->action->id) {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 }
