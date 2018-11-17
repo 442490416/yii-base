@@ -111,6 +111,8 @@ $this->params['breadcrumbs'][] = '编辑角色权限';
                     }
                 });
             });
+
+            $('#rightTree').treeview('expandAll', { levels: 3, silent: true });
         }
     </script>
 </div>
