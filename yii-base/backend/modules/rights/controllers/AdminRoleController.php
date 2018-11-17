@@ -143,7 +143,7 @@ class AdminRoleController extends Controller
 
             SessionHelper::success();
 
-            ErrorHelper::success();
+            $this->response(ErrorHelper::$SUCCESS);
         }
 
         $rightList = AdminRights::find()
