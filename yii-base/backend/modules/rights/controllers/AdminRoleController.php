@@ -4,34 +4,20 @@ namespace backend\modules\rights\controllers;
 
 use backend\models\AdminAccess;
 use backend\models\AdminRights;
+use common\helpers\ComHelper;
+use common\helpers\ErrorHelper;
 use common\helpers\SessionHelper;
 use Yii;
 use backend\models\AdminRole;
 use backend\models\search\AdminRole as AdminRoleSearch;
 use backend\controllers\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * AdminRoleController implements the CRUD actions for AdminRole model.
  */
 class AdminRoleController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all AdminRole models.
      * @return mixed
@@ -112,6 +98,14 @@ class AdminRoleController extends Controller
         return $this->redirect(['index']);
     }
 
+    /**
+     * @param $id
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException
+     * @throws \yii\db\Exception
+     * @author Jiang Haiqiang
+     * @email  jhq0113@163.com
+     */
     public function actionRoleRightSet($id)
     {
         $model = $this->findModel($id);
@@ -121,8 +115,35 @@ class AdminRoleController extends Controller
         }
 
         if(\Yii::$app->request->isPost && \Yii::$app->request->isAjax) {
+
+            $rightIds = $_POST['ids'];
+            AdminRights::deleteAll(['role_id' => $model->id]);
+
+            if(!empty($rightIds)) {
+                $rows = [];
+                foreach ($rightIds as $rightId) {
+                    array_push($rows,[
+                        $model->id,
+                        (int)$rightId
+                    ]);
+                }
+
+                $connection = AdminAccess::getDb();
+                $connection->createCommand()
+                    ->batchInsert(
+                        AdminAccess::tableName(),
+                        [
+                            'role_id',
+                            'right_id'
+                        ],
+                        $rows
+                    )
+                    ->execute();
+            }
+
             SessionHelper::success();
-            return $this->redirect(['index']);
+
+            ErrorHelper::success();
         }
 
         $rightList = AdminRights::find()

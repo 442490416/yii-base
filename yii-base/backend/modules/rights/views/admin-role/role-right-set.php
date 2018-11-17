@@ -66,8 +66,8 @@ $this->params['breadcrumbs'][] = '编辑角色权限';
                 });
 
                 $.comAjax({
-                    url     :   '<?=Url::toRoute(['role-right-set'])?>',
-                    data    :   { role_id:'<?=$model->id?>',ids : ids },
+                    url     :   '<?=Url::toRoute(['role-right-set'])?>?id=<?=$model->id?>',
+                    data    :   { ids : ids },
                     success :   function (result) {
                         window.location.reload();
                     }

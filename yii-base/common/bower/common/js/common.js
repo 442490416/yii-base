@@ -225,6 +225,15 @@ Date.prototype.time=function () {
         };
 
         params = $.extend(true,params,data);
+
+        if(params.type.toLowerCase() == 'post') {
+            var param = $("head meta[name='csrf-param']");
+            var token = $("head meta[name='csrf-token']");
+            if (param.length > 0 && token.length > 0) {
+                params.data[param.attr('content')] = token.attr('content');
+            }
+        }
+
         $.ajax(params);
     };
 
