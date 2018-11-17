@@ -117,7 +117,7 @@ class AdminRoleController extends Controller
         if(\Yii::$app->request->isPost && \Yii::$app->request->isAjax) {
 
             $rightIds = $_POST['ids'];
-            AdminRights::deleteAll(['role_id' => $model->id]);
+            AdminAccess::deleteAll(['role_id' => $model->id]);
 
             if(!empty($rightIds)) {
                 $rows = [];
