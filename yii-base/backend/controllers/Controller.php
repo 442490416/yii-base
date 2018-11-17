@@ -64,17 +64,27 @@ abstract class Controller extends \common\base\Controller
                 $this->response(ErrorHelper::$ERROR_FORBIDDEN);
             }
 
-            SessionHelper::warning('权限不够');
-
-            $html = $this->render('@backend/views/site/error',[
-                'name'     => '权限不够',
-                'message'  => '权限不够'
-            ]);
-
-            exit($html);
+            $this->error('权限不够','权限不够');
         }
 
         return $access;
+    }
+
+    /**
+     * @param string $name
+     * @param string $message
+     * @param string $returnUrl
+     * @author Jiang Haiqiang
+     * @email  jhq0113@163.com
+     */
+    public function error($name,$message,$returnUrl)
+    {
+        $html = $this->render('@backend/views/site/error',[
+            'name'      => '权限不够',
+            'message'   => '权限不够',
+            'returnUrl' => $returnUrl
+        ]);
+        exit($html);
     }
 
     /**

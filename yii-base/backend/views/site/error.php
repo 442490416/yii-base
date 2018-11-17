@@ -18,7 +18,7 @@ $this->title = $name;
     </div>
 
     <p>
-
+        <a href="<?=Html::encode($returnUrl)?>"><p class="btn btn-success">返回</p></a>
     </p>
 
 </div>
