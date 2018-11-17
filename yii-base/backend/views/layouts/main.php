@@ -22,6 +22,9 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <script type="text/javascript">
+        var Page = {};
+    </script>
 </head>
 <body class="nav-md">
 <?php $this->beginBody() ?>

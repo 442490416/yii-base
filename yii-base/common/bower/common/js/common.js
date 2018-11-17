@@ -290,8 +290,6 @@ Date.prototype.time=function () {
     };
 }($));
 
-var Page = {};
-
 /**
  * 初始化页面
  */
