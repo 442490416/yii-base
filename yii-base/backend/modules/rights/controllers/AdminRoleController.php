@@ -120,7 +120,7 @@ class AdminRoleController extends Controller
             return $this->redirect(['index']);
         }
 
-        if(\Yii::$app->request->isAjax) {
+        if(\Yii::$app->request->isPost && \Yii::$app->request->isAjax) {
             SessionHelper::success();
             return $this->redirect(['index']);
         }
