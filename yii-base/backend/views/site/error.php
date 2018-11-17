@@ -17,7 +17,26 @@ $this->title = $name;
         <?= nl2br(Html::encode($message)) ?>
     </div>
 
+    <p>
+      <span id="second" style="color: #F32043;font-size: 14px;">5</span>秒后自动返回
+    </p>
+
     <div style="text-align: center;margin-top: 20%;">
-        <a href="<?=Html::encode($returnUrl)?>" class="btn btn-success" style="width: 300px;">返回</a>
+        <a href="<?=Html::encode($returnUrl)?>" class="btn btn-success" style="width: 300px;">手动返回</a>
     </div>
+    <script type="text/javascript">
+        Page.initPage =function() {
+            var num = 5;
+            var timer = setInterval(function(){
+                num--;
+                $('#second').html(num);
+                if(num <2) {
+                    clearInterval(timer);
+                    setTimeout(function(){
+                        window.location.href = '<?=Html::encode($returnUrl)?>';
+                    },1000);
+                }
+            },1000);
+        };
+    </script>
 </div>
