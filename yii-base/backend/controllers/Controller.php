@@ -58,12 +58,14 @@ abstract class Controller extends \common\base\Controller
         $this->userInfo = $login->userInfo;
 
         $access = Right::self()->checkAccess();
+
         if(!$access) {
             if(\Yii::$app->request->isAjax) {
                 $this->response(ErrorHelper::$ERROR_FORBIDDEN);
             }
 
             SessionHelper::warning('权限不够');
+
             return $this->render('@backend/views/site/error',[
                 'name'     => '权限不够',
                 'message'  => '权限不够'
