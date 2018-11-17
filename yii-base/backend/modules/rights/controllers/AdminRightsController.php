@@ -57,6 +57,10 @@ class AdminRightsController extends Controller
             'desc' => '添加'
         ],
         [
+            'name' => 'update',
+            'desc' => '编辑'
+        ],
+        [
             'name' => 'view',
             'desc' => '详情'
         ],
