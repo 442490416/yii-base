@@ -17,7 +17,7 @@ $this->title = $name;
         <?= nl2br(Html::encode($message)) ?>
     </div>
 
-    <div style="text-align: center;">
+    <div style="text-align: center;margin-top: 20%;">
         <a href="<?=Html::encode($returnUrl)?>" class="btn btn-success" style="width: 300px;">返回</a>
     </div>
 </div>
