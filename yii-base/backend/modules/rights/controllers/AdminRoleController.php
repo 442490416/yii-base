@@ -166,7 +166,7 @@ class AdminRoleController extends Controller
             ->asArray()
             ->all();
         if(!empty($hasRightIds)) {
-            $hasRightIds = array_column($hasRightIds,'right_id');
+            $hasRightIds = array_column($hasRightIds,'role_id','right_id');
         }
 
         $treeViewList = AdminRights::formatRightList2TreeView($rightList,$hasRightIds);
