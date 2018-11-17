@@ -64,7 +64,10 @@ abstract class Controller extends \common\base\Controller
             }
 
             SessionHelper::warning('权限不够');
-            return $this->redirect($_SERVER['HTTP_REFERER']);
+            return $this->render('@backend/views/site/error',[
+                'name'     => '权限不够',
+                'message'  => '权限不够'
+            ]);
         }
 
         return $access;
@@ -89,7 +92,10 @@ abstract class Controller extends \common\base\Controller
      * @author Jiang Haiqiang
      * @email  jhq0113@163.com
      */
-    abstract protected function findModel($id);
+    protected function findModel($id)
+    {
+
+    }
 
     /**
      * @param $id
