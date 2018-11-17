@@ -62,10 +62,9 @@ use backend\models\AdminRights;
     </div>
 </div>
 <script type="text/javascript">
-    Page = {
-        list:<?=json_encode($list,JSON_UNESCAPED_UNICODE)?>,
-        model:<?=$model->isNewRecord ? json_encode((object)[]) : json_encode(['level'=>$model->level,'parent_id'=>$model->parent_id],JSON_UNESCAPED_UNICODE)?>
-    };
+    Page.list=<?=json_encode($list,JSON_UNESCAPED_UNICODE)?>;
+    Page.model=<?=$model->isNewRecord ? json_encode((object)[]) : json_encode(['level'=>$model->level,'parent_id'=>$model->parent_id],JSON_UNESCAPED_UNICODE)?>;
+
 
     Page.changeLevel =function(level) {
         $('#adminrights-parent_id').empty();
@@ -83,7 +82,7 @@ use backend\models\AdminRights;
         })
     };
 
-    Page.init = function() {
+    Page.initPage = function() {
         //初始化父节点
         if(!$.isEmptyObject(Page.model)) {
             var level = parseInt(Page.model.level);
