@@ -95,7 +95,7 @@ $this->params['breadcrumbs'][] = $this->title;
         var mcrypter = new JSEncrypt();
         mcrypter.setPublicKey(publicKey);
 
-        $('#captcha').on('keydown',function(e) {
+        $('#captcha').on('keyup',function(e) {
             if (e.keyCode == 13) {
                 $('#btn-submit').click();
             }
