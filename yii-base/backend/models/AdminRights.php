@@ -91,13 +91,107 @@ class AdminRights extends \common\base\ActiveRecord
     }
 
     /**
-     * @param array $list
+     * @param array $rightList
      * @return array
      * @author Jiang Haiqiang
      * @email  jhq0113@163.com
      */
-    public static function format($list)
+    public static function format($rightList)
     {
-        return $list;
+        if(empty($rightList)) {
+            return [];
+        }
+
+        $formatRightList = [];
+        $idParentIdMap   = array_column($rightList,'parent_id','id');
+
+        foreach ($rightList as $right) {
+            $right['text'] = $right['name'].'-'.self::$LEVEL_MAP[ $right['level'] ];
+
+            if($right['level'] === self::APP){        //填充application
+                $appId     = $right['id'];
+                $right['nodes'] = [];
+                $formatRightList[ $appId ] = $right;
+            }
+            elseif($right['level'] === self::MODULE) {   //填充module
+                $appId = $right['parent_id'];
+                $moduleId  = $right['id'];
+                if(isset($formatRightList[ $appId] )) {
+                    $right['nodes'] = [];
+                    $formatRightList[ $appId ]['nodes'][ $moduleId ] = $right;
+                }
+            }elseif ($right['level'] === self::CONTROLLER) { //填充controller
+                $controllerId = $right['id'];
+                $moduleId     = $right['parent_id'];
+                $appId        = $idParentIdMap[ $moduleId ];
+
+                if(isset($formatRightList[ $appId ]['nodes'][ $moduleId ])) {
+                    $right['nodes'] = [];
+                    $formatRightList[ $appId ]['nodes'][ $moduleId ]['nodes'][ $controllerId ] = $right;
+                }
+            }elseif ($right['level'] === self::ACTION) { //填充action
+                $actionId     = $right['id'];
+                $controllerId = $right['parent_id'];
+                $moduleId     = $idParentIdMap[ $controllerId ];
+                $appId        = $idParentIdMap[ $moduleId ];
+
+                if(isset($formatRightList[ $appId ]['nodes'][ $moduleId ]['nodes'][ $controllerId ])) {
+                    $formatRightList[ $appId ]['nodes'][ $moduleId ]['nodes'][ $controllerId ]['nodes'][ $actionId ] = $right;
+                }
+            }
+        }
+
+        return $formatRightList;
+    }
+
+    /**
+     * @param array $formatRightList
+     * @param array $rightIds
+     * @return array
+     * @author Jiang Haiqiang
+     * @email  jhq0113@163.com
+     */
+    public static function formatRightList2TreeView($formatRightList,$rightIds)
+    {
+        $treeViewList = [];
+        foreach ($formatRightList as $module) {
+            //增加module选中状态
+            $module['state'] = [
+                'checked'   => isset($rightIds[ $module['id'] ])
+            ];
+
+            if(!isset($module['nodes'])) {
+                array_push($treeViewList,$module);
+                continue;
+            }
+
+            foreach ($module['nodes'] as $key => $controller) {
+                //增加controller选中状态
+                $module['nodes'][ $key ]['state'] =[
+                    'checked'   => isset($rightIds[ $controller['id'] ])
+                ];
+
+                if(!isset($controller['nodes'])) {
+                    continue;
+                }
+                //整理action节点
+                $module['nodes'][ $key ]['nodes'] = array_values($controller['nodes']);
+
+                //增加action选中状态
+                $module['nodes'][ $key ]['nodes'] = array_map(function($value)use($rightIds){
+                    $value['state'] = [
+                        'checked'   => isset($rightIds[ $value['id'] ])
+                    ];
+                    return $value;
+                },$module['nodes'][ $key ]['nodes']);
+            }
+
+            //整理controller节点
+            $module['nodes'] = array_values($module['nodes']);
+
+            array_push($treeViewList,$module);
+        }
+
+        return $treeViewList;
     }
 }

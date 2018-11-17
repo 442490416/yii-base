@@ -42,4 +42,6 @@ class AdminAccess extends \common\base\ActiveRecord
             'right_id' => Yii::t('app', '权限id'),
         ];
     }
+
+
 }

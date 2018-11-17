@@ -120,7 +120,7 @@ class AdminRoleController extends Controller
             return $this->redirect(['index']);
         }
 
-        if(\Yii::$app->request->isPost) {
+        if(\Yii::$app->request->isAjax) {
             SessionHelper::success();
             return $this->redirect(['index']);
         }
@@ -148,10 +148,11 @@ class AdminRoleController extends Controller
             $hasRightIds = array_column($hasRightIds,'right_id');
         }
 
+        $treeViewList = AdminRights::formatRightList2TreeView($rightList,$hasRightIds);
+
         return $this->render('role-right-set',[
-            'model'       => $model,
-            'rightList'   => $rightList,
-            'hasRightIds' => $hasRightIds
+            'model'        => $model,
+            'treeViewList' => $treeViewList
         ]);
     }
 
