@@ -58,6 +58,10 @@ $this->params['breadcrumbs'][] = '编辑角色权限';
                 $('#rightTree').treeview('uncheckAll');
             });
 
+            $('#rightTree').on('nodeChecked',function(event, data){
+                console.log(event,data);
+            });
+
             $('#btn_submit').on('click',function () {
                 var checkedList = $('#rightTree').treeview('getChecked');
                 var ids = [];
