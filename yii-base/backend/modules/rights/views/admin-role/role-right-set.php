@@ -47,7 +47,21 @@ $this->params['breadcrumbs'][] = '编辑角色权限';
                 levels:3,
                 data: data,
                 showCheckbox: true,
-                showTags:true
+                showTags:true,
+                onNodeChecked:function(event, data){
+                    console.log(event,data);
+                },
+                onNodeUnchecked:function(event, data){
+                    if(parseInt(data.level) < 3) {
+                        if(typeof data.nodes == 'object' && $.isEmptyObject(data.nodes)) {
+                            $.each(data.nodes,function(index,item) {
+                                $('#rightTree').treeview('uncheckNode', [ item.id, { silent: true } ]);
+                            });
+                        }
+                    }else {
+
+                    }
+                }
             });
 
             $('#btn_select_all').on('click',function () {
@@ -56,10 +70,6 @@ $this->params['breadcrumbs'][] = '编辑角色权限';
 
             $('#btn_select_none').on('click',function () {
                 $('#rightTree').treeview('uncheckAll');
-            });
-
-            $('#rightTree').on('nodeChecked',function(event, data){
-                console.log(event,data);
             });
 
             $('#btn_submit').on('click',function () {
