@@ -95,15 +95,6 @@ $this->params['breadcrumbs'][] = $this->title;
         var mcrypter = new JSEncrypt();
         mcrypter.setPublicKey(publicKey);
 
-        $('#captcha').on('keyup',function(e) {
-            if (e.keyCode == 13) {
-                if($(this).val() =='') {
-                    return;
-                }
-                $('#btn-submit').click();
-            }
-        });
-
         $('#login-form').on('beforeValidate',function(){
             var password = $('#password').val();
             password = mcrypter.encrypt(password).urlEncode4Base64();
