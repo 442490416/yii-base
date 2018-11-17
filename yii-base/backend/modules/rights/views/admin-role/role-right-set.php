@@ -49,7 +49,9 @@ $this->params['breadcrumbs'][] = '编辑角色权限';
                 showCheckbox: true,
                 showTags:true,
                 onNodeChecked:function(event, data){
-                    console.log(event,data);
+                    if(parseInt(data.level) > 0) {
+                        var parent = $('#rightTree').treeview('getParent', data.nodeId);
+                    }
                 },
                 onNodeUnchecked:function(event, data){
                     var level = parseInt(data.level);
@@ -62,8 +64,8 @@ $this->params['breadcrumbs'][] = '编辑角色权限';
                     }
 
                     if(level >0) {
-                        var siblings = $('#tree').treeview('getSiblings', data.nodeId);
-                        var parent = $('#tree').treeview('getParent', data.nodeId);
+                        var siblings = $('#rightTree').treeview('getSiblings', data.nodeId);
+                        var parent = $('#rightTree').treeview('getParent', data.nodeId);
                         console.log(siblings,parent);
                     }
 
