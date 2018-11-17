@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = '编辑角色权限';
 
     <script type="text/javascript">
         Page.initPage = function () {
-            var data = <?php echo json_encode($treeViewList);?>;
+            var data = <?=json_encode($treeViewList,JSON_UNESCAPED_UNICODE);?>;
 
             //初始化树结构
             $('#rightTree').treeview({
