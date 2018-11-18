@@ -68,6 +68,9 @@ return [
     'modules' => [
         'rights' => [
             'class' => 'backend\modules\rights\Module'
+        ],
+        'cms' => [
+            'class' => 'backend\modules\cms\Module'
         ]
     ]
 ];
