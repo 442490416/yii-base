@@ -86,9 +86,7 @@ class MdEditorWidget extends InputWidget
     {
         MdEditorAsset::register($this->view);
 
-        $script='var '.$this->_editorId.'=editormd("'.$this->_editorId.'",'.json_encode($this->options).');$("form").on("beforeValidate",function(){
-            $("#'.$this->id.'").val('.$this->_editorId.'".getMarkdown());
-        });';
+        $script='var '.$this->attribute.'=editormd("'.$this->_editorId.'",'.json_encode($this->options).');$("form").on("beforeValidate",function(){$("#'.$this->id.'").val('.$this->attribute.'".getMarkdown())});';
         $this->view->registerJs($script, View::POS_READY);
     }
 }
