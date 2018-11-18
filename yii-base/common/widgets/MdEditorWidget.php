@@ -75,7 +75,7 @@ class MdEditorWidget extends InputWidget
         $attribute = $this->attribute;
         $valueHtml = Html::activeHiddenInput($this->model,$this->attribute,['id' => $this->id]);
 
-        return $valueHtml.Html::tag('div',$this->model->$attribute,['id' => $this->_editorId]);
+        return $valueHtml.'<div id="'.$this->_editorId.'"><textarea style="display:none;">'.$this->model->$attribute.'</textarea></div>';
 
     }
 
