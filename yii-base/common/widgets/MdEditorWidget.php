@@ -32,10 +32,17 @@ class MdEditorWidget extends InputWidget
      */
     private $_defaultOptions=[
         'path'            => '/mdeditor/lib/',
-        'width'           => "90%",
+        'width'           => "98%",
         'height'          => 640,
         'syncScrolling'   => "single",
     ];
+
+    /**
+     * @var string
+     * @author Jiang Haiqiang
+     * @email  jhq0113@163.com
+     */
+    private $_editorId;
 
     /**
      * @throws \yii\base\InvalidConfigException
@@ -50,6 +57,8 @@ class MdEditorWidget extends InputWidget
 
         $this->setId($id);
 
+        $this->_editorId = $id.'-content';
+
         $this->options = array_merge($this->_defaultOptions,$this->options);
     }
 
@@ -63,7 +72,10 @@ class MdEditorWidget extends InputWidget
 
         $this->registerAsset();
 
-        return Html::tag('div','',['id' => $this->id]);
+        $attribute = $this->attribute;
+        $valueHtml = Html::activeHiddenInput($this->model,$this->attribute,['id' => $this->id]);
+
+        return $valueHtml.Html::tag('div',$this->model->$attribute,['id' => $this->_editorId]);
 
     }
 
@@ -74,7 +86,9 @@ class MdEditorWidget extends InputWidget
     {
         MdEditorAsset::register($this->view);
 
-        $script='editormd("'.$this->id.'",'.json_encode($this->options).');';
+        $script='var '.$this->_editorId.'=editormd("'.$this->_editorId.'",'.json_encode($this->options).');$("form").on("beforeValidate",function(){
+            $("#'.$this->id.'").val('.$this->_editorId.'".getMarkdown());
+        });';
         $this->view->registerJs($script, View::POS_READY);
     }
 }
