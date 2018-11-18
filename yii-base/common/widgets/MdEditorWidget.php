@@ -63,7 +63,7 @@ class MdEditorWidget extends InputWidget
 
         $this->registerAsset();
 
-        return Html::activeTextarea($this->model, $this->attribute, ['id' => $this->id]);
+        return Html::tag('div','',['id' => $this->id]);
 
     }
 
