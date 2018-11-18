@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\modules\rights;
+namespace backend\modules\cms;
 
 /**
  * app module definition class
