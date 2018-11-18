@@ -74,11 +74,7 @@ class MdEditorWidget extends InputWidget
     {
         MdEditorAsset::register($this->view);
 
-        $script='
-            $(document).ready(function(){
-                editormd("'.$this->id.'", 
-                '.json_encode($this->options).');
-            });';
+        $script='editormd("'.$this->id.'",'.json_encode($this->options).');';
         $this->view->registerJs($script, View::POS_READY);
     }
 }
