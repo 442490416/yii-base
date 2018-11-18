@@ -18,6 +18,19 @@ use Yii;
  */
 class Article extends \modules\cms\ActiveRecord
 {
+    const TYPE_HTML     = '0';
+    const TYPE_MARKDOWN = '1';
+
+    /**
+     * @var array
+     * @author Jiang Haiqiang
+     * @email  jhq0113@163.com
+     */
+    public static $TYPE_MAP = [
+        self::TYPE_HTML      => 'html',
+        self::TYPE_MARKDOWN  => 'markdown'
+    ];
+
     /**
      * {@inheritdoc}
      */

@@ -6,7 +6,7 @@
  * Time: 下午8:22
  */
 
-namespace common\widgets\simplemde;
+namespace common\widgets;
 
 use common\assets\MdEditorAsset;
 use yii\bootstrap\Html;
