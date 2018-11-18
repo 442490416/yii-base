@@ -31,7 +31,7 @@ class MdEditorWidget extends InputWidget
      * @author 姜海强 <jhq0113@163.com>
      */
     private $_defaultOptions=[
-        'path'            => '/mdeditor/lib',
+        'path'            => '/mdeditor/lib/',
         'width'           => "90%",
         'height'          => 640,
         'syncScrolling'   => "single",
