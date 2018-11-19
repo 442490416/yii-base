@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'maintaince',
             [
                 'attribute' => 'content',
-                'value'     => '<div id="md-view"><textarea style="display: none;">'.$model->content.'</textarea></div>',
+                'value'     => '<div id="md-view"><textarea>'.$model->content.'</textarea></div>',
                 'format'    => 'html'
             ],
             'add_time',
