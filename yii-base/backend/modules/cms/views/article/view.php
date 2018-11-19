@@ -38,16 +38,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'logo',
             'type',
             'maintaince',
-            [
-                'attribute' => 'content',
-                'value'     => '<div id="md-view"><textarea>'.$model->content.'</textarea></div>',
-                'format'    => 'html'
-            ],
+            'content:ntext',
             'add_time',
             'is_on',
         ],
     ]) ?>
 
+</div>
+<div id="md-view">
+    <textarea style="display: none;">
+        <?=$model->content?>
+    </textarea>
 </div>
 <?php
  $script =<<<JS

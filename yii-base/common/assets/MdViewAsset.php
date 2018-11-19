@@ -42,6 +42,17 @@ class MdViewAsset extends Asset
 
     /**
      * @var array
+     * Author: Jiang Haiqiang
+     * Email : jhq0113@163.com
+     * Date: 2018/11/19
+     * Time: 17:12
+     */
+    public $css = [
+        'css/editormd.preview.min.css'
+    ];
+
+    /**
+     * @var array
      * @author 姜海强 <jhq0113@163.com>
      */
     public $depends = [
