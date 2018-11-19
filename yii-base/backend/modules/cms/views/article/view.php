@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use common\assets\MdViewAsset;
+
+MdViewAsset::register($this);
 
 /* @var $this yii\web\View */
 /* @var $model modules\cms\models\Article */
@@ -9,7 +12,9 @@ use yii\widgets\DetailView;
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => '文章管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
+
 <div class="article-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -33,10 +38,28 @@ $this->params['breadcrumbs'][] = $this->title;
             'logo',
             'type',
             'maintaince',
-            'content:ntext',
+            [
+                'attribute' => 'content',
+                'value'     => '<div id="md-view"><textarea style="display: none;">'.$model->content.'</textarea></div>',
+                'format'    => 'html'
+            ],
             'add_time',
             'is_on',
         ],
     ]) ?>
 
 </div>
+<?php
+ $script =<<<JS
+    editor = editormd.markdownToHTML("md-view", {
+            htmlDecode: "style,script,iframe",  // you can filter tags decode
+            emoji: true,
+            taskList: true,
+            tex: true,  // 默认不解析
+            flowChart: true,  // 默认不解析
+            sequenceDiagram: true,  // 默认不解析
+            codeFold: true
+    });
+JS;
+    $this->registerJs($script,\yii\web\View::POS_READY);
+?>
