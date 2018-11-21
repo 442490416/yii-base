@@ -33,7 +33,7 @@ class UpController extends Controller
     {
         return [
             'summer' =>[
-                'class'         => 'common\widgets\summernote\UploadAction\UploadAction',
+                'class'         => 'common\widgets\summernote\UploadAction',
                 'uploadPath'    => UPLOAD_SERVER_WEB_PATH.'/summer',
                 'urlPrefix'     => FILE_URL.'/summer',
             ],
