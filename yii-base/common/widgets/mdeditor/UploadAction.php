@@ -48,9 +48,7 @@ class UploadAction extends Action
      */
     public function run()
     {
-        $name = ComHelper::fStr('name',$_POST);
-
-        $file=UploadHelper::getFileByName($name);
+        $file=UploadHelper::getFileByName('editormd-image-file');
         if(!$file)
         {
             exit(json_encode([
