@@ -40,7 +40,6 @@ class MdEditorWidget extends InputWidget
         'theme'           => "dark",
         'previewTheme'    => "dark",
         'editorTheme'     => "pastel-on-dark",
-        'markdown'        => 'md',
         'taskList'        => true,
         'tex'             => true,
         'flowChart'       => true,
