@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
  $script =<<<JS
     editor = editormd.markdownToHTML("md-view", {
             htmlDecode: "style,script,iframe",  // you can filter tags decode
-            emoji: true,
+            emoji: false,
             taskList: true,
             tex: true,  // 默认不解析
             flowChart: true,  // 默认不解析

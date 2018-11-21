@@ -35,6 +35,13 @@ class MdEditorWidget extends InputWidget
         'width'           => "98%",
         'height'          => 640,
         'syncScrolling'   => "single",
+        'htmlDecode'      => "style,script,iframe",
+        'emoji'           => false,
+        'taskList'        => true,
+        'tex'             => true,
+        'flowChart'       => true,
+        'sequenceDiagram' => true,
+        'codeFold'        => true
     ];
 
     /**
