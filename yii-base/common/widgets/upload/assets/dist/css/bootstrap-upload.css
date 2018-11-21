@@ -29,7 +29,11 @@
     padding: 5px;
 }
 
-.bootstrap-upload-view-item,.bootstrap-upload-item .thumbnail{
+.bootstrap-upload-item .thumbnail {
+    height: 256px;
+}
+
+.bootstrap-upload-view-item{
     height: 220px;
 }
 
