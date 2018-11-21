@@ -52,15 +52,15 @@ class UploadAction extends Action
         if(!$file)
         {
             exit(json_encode([
-                'status'=>'404',
-                'data'=>'请选择要上传的图片文件'
+                'success' =>  0,
+                'message' => '请选择图片',
             ]));
         }
 
         $result = UploadHelper::upImg($file,$this->uploadPath,$this->urlPrefix);
 
         exit(json_encode([
-            'success' => ($result['status'] === '200') ? 0 : 1,
+            'success' => ($result['status'] === '200') ? 1 : 0,
             'message' => $result['data'],
             'url' => $result['data'],
         ]));
