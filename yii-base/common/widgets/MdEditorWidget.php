@@ -37,11 +37,18 @@ class MdEditorWidget extends InputWidget
         'syncScrolling'   => "single",
         'htmlDecode'      => "style,script,iframe",
         'emoji'           => false,
+        'theme'           => "dark",
+        'previewTheme'    => "dark",
+        'editorTheme'     => "pastel-on-dark",
+        'markdown'        => 'md',
         'taskList'        => true,
         'tex'             => true,
         'flowChart'       => true,
         'sequenceDiagram' => true,
-        'codeFold'        => true
+        'codeFold'        => true,
+        'imageUpload'     => true,
+        'imageFormats'    => ["jpg", "jpeg", "gif", "png"],
+        'imageUploadURL'  => "/up/upload",
     ];
 
     /**

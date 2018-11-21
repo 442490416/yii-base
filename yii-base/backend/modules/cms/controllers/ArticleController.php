@@ -2,6 +2,7 @@
 
 namespace backend\modules\cms\controllers;
 
+use common\helpers\ComHelper;
 use Yii;
 use modules\cms\models\Article;
 use backend\modules\cms\models\search\ArticleSearch;
@@ -53,6 +54,8 @@ class ArticleController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
+
+        $model->type = ComHelper::fStr('type',$_GET);
 
         return $this->render('create', [
             'model' => $model,
