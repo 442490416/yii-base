@@ -26,6 +26,7 @@ $rightList = Right::self()->rightList;
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <script type="text/javascript">
+        window.staticUrl ='<?=FILE_URL?>';
         var Page = {};
     </script>
 </head>
