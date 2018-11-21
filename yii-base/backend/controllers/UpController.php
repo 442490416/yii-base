@@ -15,6 +15,13 @@ namespace backend\controllers;
  */
 class UpController extends Controller
 {
+    /**
+     * @var bool
+     * @author Jiang Haiqiang
+     * @email  jhq0113@163.com
+     */
+    public $enableCsrfValidation = false;
+
     /**编辑器上传
      * @return array
      * @author 姜海强 <jhq0113@163.com>
