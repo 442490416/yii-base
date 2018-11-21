@@ -6,7 +6,7 @@
  * Time: 下午8:22
  */
 
-namespace common\widgets;
+namespace common\widgets\mdeditor;
 
 use common\assets\MdEditorAsset;
 use yii\bootstrap\Html;
@@ -47,7 +47,7 @@ class MdEditorWidget extends InputWidget
         'codeFold'        => true,
         'imageUpload'     => true,
         'imageFormats'    => ["jpg", "jpeg", "gif", "png"],
-        'imageUploadURL'  => "/up/upload",
+        'imageUploadURL'  => "/up/md",
     ];
 
     /**

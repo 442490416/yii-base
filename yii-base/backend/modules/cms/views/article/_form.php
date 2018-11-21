@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use common\widgets\upload\ImageWidget;
-use common\widgets\MdEditorWidget;
+use common\widgets\mdeditor\MdEditorWidget;
 use common\widgets\summernote\SummerWidget;
 use modules\cms\models\Article;
 
