@@ -163,6 +163,7 @@ $rightList = Right::self()->rightList;
     Page.init = function(){
         this.initEvent();
         this.initBar();
+        this.initUpload();
 
         if(typeof this.initPage == 'function') {
             this.initPage();
@@ -226,6 +227,118 @@ $rightList = Right::self()->rightList;
 
         element.modal('show');
     };
+
+    Page.initUpload =function() {
+        $.imgUpUrl='/up/img';
+        $.fileUpUrl='/up/file';
+        $.videoUpUrl='/up/video';
+        $.voiceUpUrl='/up/voice';
+
+        var upElements=$('.up-btn');
+        if(upElements.length >0)
+        {
+            /**
+             * 根据类型选择上传地址
+             * @param type
+             * @returns {*}
+             */
+            function getUrlByType(type) {
+                switch (type){
+                    case 'img':
+                        return $.imgUpUrl;
+                    case 'file':
+                        return $.fileUpUrl;
+                    case 'video':
+                        return $.videoUpUrl;
+                    case 'voice':
+                        return $.voiceUpUrl;
+                }
+            }
+
+            /**
+             * 处理成功
+             * @param self
+             * @param valueElement
+             * @param result
+             * @param type
+             */
+            function dealSuccess(self,valueElement,result,type) {
+                valueElement.val(result.data);
+                switch (type){
+                    case 'img':
+                        self.parent().siblings('.img-preview').find('img').attr('src',window.staticUrl+result.data);
+                        break;
+                }
+            }
+
+            /**
+             * 上传状态Key
+             * @type {{}}
+             */
+            var upStatusKey={};
+
+            $('.up-btn').on('click',function () {
+                var self=$(this);
+
+                //文件节点
+                var fileNodeId=$(this).attr('file-node-id');
+                var valueNodeId=$(this).attr('value-node-id');
+                var type=$(this).attr('type');
+
+                if(upStatusKey[valueNodeId])
+                {
+                    return;
+                }
+
+                //参数名
+                var name=$('#'+fileNodeId).attr('name');
+                if(name.length <1)
+                {
+                    name = fileNodeId;
+                }
+
+                var valueElement=$('#'+valueNodeId);
+                if(name.length >0 && valueElement.length > 0 && type.length >0)
+                {
+                    upStatusKey[valueNodeId]=true;
+
+                    self.html('正在努力上传中...').attr('class','up-btn btn btn-warning');
+
+                    $.ajaxFileUpload({
+                        url:getUrlByType(type),
+                        secureuri: false,
+                        data:{name:name,isAjax:'1'},
+                        fileElementId: fileNodeId,
+                        dataType: 'json',
+                        success: function (result){
+
+                            upStatusKey[valueNodeId]=false;
+                            if(result.status == '200'){
+                                self.html('上传成功').attr('class','up-btn btn btn-success');
+
+                                dealSuccess(self,valueElement,result,type);
+                            }else{
+                                self.html(result.data);
+                            }
+
+                            setTimeout(function () {
+                                self.html('重新上传');
+                            },3000);
+                        },
+                        error:function (error) {
+
+                            upStatusKey[valueNodeId]=false;
+
+                            self.html('上传失败').attr('class','up-btn btn btn-danger');
+                            setTimeout(function () {
+                                self.html('重新上传');
+                            },1000);
+                        }
+                    });
+                }
+            });
+        }
+    }
 
 </script>
 </body>

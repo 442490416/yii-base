@@ -8,6 +8,9 @@
 
 namespace backend\controllers;
 
+use common\helpers\ComHelper;
+use common\helpers\UploadHelper;
+
 /**
  * Class UpController
  * @package backend\controllers
@@ -47,5 +50,63 @@ class UpController extends Controller
         ];
     }
 
+    /**传图片
+     * @author 姜海强 <jhq0113@163.com>
+     */
+    public function actionImg()
+    {
+        $name=ComHelper::fStr('name',$_POST);
+        $file=UploadHelper::getFileByName($name);
+        if(!$file)
+        {
+            ComHelper::retArray([
+                'status'=>'404',
+                'data'=>'请选择要上传的图片文件'
+            ]);
+        }
+        $upInfo=UploadHelper::upImg($file,UPLOAD_SERVER_WEB_PATH);
+        $upInfo['data']=$upInfo['message'];
+        unset($upInfo['message']);
+        ComHelper::retArray($upInfo);
+    }
 
+    /**上传文件
+     * @author 姜海强 <jhq0113@163.com>
+     */
+    public function actionFile()
+    {
+        $name=ComHelper::fStr('name',$_POST);
+        $file=UploadHelper::getFileByName($name);
+        if(!$file)
+        {
+            ComHelper::retArray([
+                'status'=>'404',
+                'data'=>'请选择要上传的文件'
+            ]);
+        }
+        $upInfo=UploadHelper::upFile($file,UPLOAD_SERVER_WEB_PATH);
+        $upInfo['data']=$upInfo['message'];
+        unset($upInfo['message']);
+        ComHelper::retArray($upInfo);
+    }
+
+    /**上传视频文件
+     * @author 姜海强 <jhq0113@163.com>
+     */
+    public function actionVideo()
+    {
+        $name=ComHelper::fStr('name',$_POST);
+        $file=UploadHelper::getFileByName($name);
+        if(!$file)
+        {
+            ComHelper::retArray([
+                'status'=>'404',
+                'data'=>'请选择要上传的视频文件'
+            ]);
+        }
+        $upInfo=UploadHelper::upVideo($file,UPLOAD_SERVER_WEB_PATH);
+        $upInfo['data']=$upInfo['message'];
+        unset($upInfo['message']);
+        ComHelper::retArray($upInfo);
+    }
 }

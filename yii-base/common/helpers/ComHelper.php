@@ -96,4 +96,66 @@ class ComHelper
 
         return $long ? ip2long($ip) : $ip;
     }
+
+    //--------------------------------返回数据--------------------------------------
+    /**检测是否是跨域请求
+     * @return bool
+     * @author 姜海强
+     */
+    private static function checkCrossDomain()
+    {
+        return self::fInt('cdRoMani',$_POST) == 1;
+    }
+
+    /**得到跨域脚本
+     * @return string
+     * @author 姜海强
+     */
+    private static function getRetData($result)
+    {
+        return (self::checkCrossDomain()?CROSSDOMAINSCRIPT:'').json_encode($result,JSON_UNESCAPED_UNICODE);
+    }
+
+    /**返回状态信息，具体参考StateHelper
+     * @param array $state         StateHelper的静态属性
+     * @param mixed $addtion       附加信息
+     */
+    public static function retState(array $state,$addtion='')
+    {
+        $result = ['data'=> $state['desc'],'status' => $state['code'],'addition'=>$addtion];
+        self::retArray($result);
+    }
+
+    /**通用Ajax返回信息    SUCCESS
+     * @param mixed $data                DATA
+     * @param mixed $status              状态码
+     */
+    public static function retData($data = 'SUCCESS', $status = '200')
+    {
+        $result=['status' => $status,'data'=> $data];
+        self::retArray($result);
+    }
+
+    /**返回数据
+     * @param array $data
+     * @author 姜海强 <jhq0113@163.com>
+     */
+    public static function retArray(array $data)
+    {
+        \Yii::$app->response->send();
+        header('Content-Type: application/json; charset=UTF-8');
+        exit(self::getRetData($data));
+    }
+
+    /**
+     *通用Ajax返回信息   NULL_OR_EMPTY
+     */
+    public static function retNullOrEmpty($data = "")
+    {
+        $result = ['status' => '-1','data' => $data];
+        \Yii::$app->response->send();
+        exit(self::getRetData($result));
+    }
+    //--------------------------------返回数据--------------------------------------
+
 }
