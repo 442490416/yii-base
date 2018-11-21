@@ -57,6 +57,12 @@ class UploadAction extends Action
             ]));
         }
 
-        exit(json_encode(UploadHelper::upImg($file,$this->uploadPath,$this->urlPrefix)));
+        $result = UploadHelper::upImg($file,$this->uploadPath,$this->urlPrefix);
+
+        exit(json_encode([
+            'success' => ($result['status'] === '200') ? 0 : 1,
+            'message' => $result['data'],
+            'url' => $result['data'],
+        ]));
     }
 }
